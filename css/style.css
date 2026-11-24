@@ -1381,11 +1381,11 @@ body:has(.landing-menu[open]) {
   stroke-linecap: round;
 }
 @media (max-width: 820px) {
-  [data-page="home"]:has(.landing-menu-toggle:not([hidden])) header .wrap {
+  body:has(.landing-menu-toggle:not([hidden])) header .wrap {
     grid-template-columns: 1fr auto auto;
     gap: 10px;
   }
-  [data-page="home"]:has(.landing-menu-toggle:not([hidden])) header nav.mid {
+  body:has(.landing-menu-toggle:not([hidden])) header nav.mid {
     display: none;
   }
   .landing-menu-toggle:not([hidden]) {

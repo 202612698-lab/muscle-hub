@@ -11,7 +11,8 @@
       href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
       rel="stylesheet" />
     <!-- All the styling lives in this file -->
-    <link href="css/style.css?v=features-hero" rel="stylesheet" />
+    <link href="css/style.css?v=public-menu" rel="stylesheet" />
+    <script src="js/landing-menu.js" defer></script>
   </head>
   <body data-page="features">
     <header>
@@ -29,6 +30,9 @@
           </svg>
           Login
         </a>
+        <button class="landing-menu-toggle" type="button" aria-label="Open navigation" aria-controls="landing-menu" aria-expanded="false" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
       </div>
     </header>
     <main>
@@ -87,22 +91,42 @@
     </main>
     <footer>
       <div class="wrap">
-        <div class="foot">
+        <div class="foot" id="contact">
           <div>
             <a class="logo" href="index.html"><img src="images/musclehub-logo.svg" alt="Muscle Hub" width="256" height="178" /></a>
-            <p>Your personal muscle-building guide.</p>
+            <p>
+              Your personal muscle-building guide. Train safely, and talk to a
+              coach or doctor if you’re unsure.
+            </p>
           </div>
           <div class="links">
             <div>
               <b>Explore</b>
               <a href="features.html">Features</a>
+              <a href="about.html">About</a>
               <a href="login.html">Login</a>
               <a href="signup.html">Get Started</a>
+            </div>
+            <div>
+              <b>Follow</b>
+              <a href="#">YouTube</a>
+              <a href="#">Facebook</a>
+              <a href="#">Instagram</a>
             </div>
           </div>
         </div>
         <div class="copy">© 2026 Muscle Hub. All rights reserved.</div>
       </div>
     </footer>
+    <dialog class="landing-menu" id="landing-menu" aria-label="Site navigation">
+      <button class="landing-menu-close" type="button" aria-label="Close navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+      </button>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a class="on" href="features.html" aria-current="page">Features</a>
+        <a href="about.html">About</a>
+      </nav>
+    </dialog>
   </body>
 </html>
