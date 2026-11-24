@@ -1160,6 +1160,12 @@ h3 {
 }
 
 
+.auth-card input {
+  box-sizing: border-box;
+  height: 50px;
+  font-size: 14px;
+  line-height: 1.4;
+}
 .auth-password {
   display: grid;
   gap: 6px;
