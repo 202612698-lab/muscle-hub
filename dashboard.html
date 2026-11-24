@@ -1,0 +1,264 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Dashboard – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/charts.js" defer></script>
+  </head>
+  <body data-page="dashboard">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a class="me" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a aria-current="page" class="on" href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <section class="welcome">
+          <div class="welcome-txt">
+            <span class="eyebrow">Welcome back,</span>
+            <h1><span>Alex</span>!</h1>
+            <p>Let’s keep pushing towards your fitness goals.</p>
+          </div>
+          <div class="welcome-cta">
+            <a class="btn" href="session.html#b">Start Today’s Workout</a><a class="btn sec" href="workout-plans.html#plans">Browse Plans</a>
+          </div>
+        </section>
+        <section class="stats" id="dash-stats" aria-label="Workout statistics">
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <rect height="16" rx="2" width="18" x="3" y="5"></rect>
+                <path d="M8 3v4M16 3v4M3 10h18M8 15l3 3 5-5"></path></svg></span>
+            <div>
+              <small>Workouts this week</small><b>0 / 5</b><em>5 to reach your goal</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="13" r="8"></circle>
+                <path d="M12 9v4l3 2M10 2h4"></path></svg></span>
+            <div>
+              <small>Avg workout time</small><b>48 min</b><em>↑ +4% vs last week</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <path
+                  d="M12 22c4 0 7-3 7-7 0-3-2-5-3-7-1 2-2 3-3 3 0-3-1-6-4-8 0 4-4 6-4 12 0 4 3 7 7 7z"></path></svg></span>
+            <div>
+              <small>Week streak</small><b>20 weeks</b><em>Consecutive weeks</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <path
+                  d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"></path></svg></span>
+            <div><small>Total workouts</small><b>77</b><em>All time</em></div>
+          </div>
+        </section>
+        <section class="dash-grid">
+          <div class="card plan" id="dash-plan">
+            <div class="card-h">
+              <h2>Your Workout Plan</h2>
+              <a class="more" href="workout-plans.html#plans">All plans →</a>
+            </div>
+            <div class="plan-overview">
+              <h3>Full Body Strength</h3>
+              <p>A balanced routine to build strength across all major muscle groups.</p>
+              <div class="ptags">
+                <span class="tag">Active</span><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">3 days per week</span>
+              </div>
+            </div>
+            <div class="plan-next">
+              <p class="meta">Next session</p>
+              <p class="plan-next-name">Full Body B</p>
+              <p class="meta">4 exercises · ~45 min</p>
+            </div>
+            <div class="actions">
+              <a class="btn sm" href="session.html#b">Continue Workout →</a><a class="btn sec sm" href="workout-plans.html#plans">Change plan</a>
+            </div>
+          </div>
+          <div class="card" id="dash-progress">
+            <div class="card-h">
+              <div>
+                <h2>Your Progress</h2>
+                <p class="muted small">Workouts per week, last 8 weeks</p>
+              </div>
+              <div class="card-h-r">
+                <a class="more" href="progress.html">Details →</a>
+              </div>
+            </div>
+            <div
+              class="bars"
+              role="img"
+              aria-label="Workouts per week for the last 8 weeks">
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:60%"></i>
+                </div>
+                <strong>3</strong><span>Oct 5</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:100%"></i>
+                </div>
+                <strong>5</strong><span>Oct 12</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:100%"></i>
+                </div>
+                <strong>5</strong><span>Oct 19</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:60%"></i>
+                </div>
+                <strong>3</strong><span>Oct 26</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:80%"></i>
+                </div>
+                <strong>4</strong><span>Nov 2</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:100%"></i>
+                </div>
+                <strong>5</strong><span>Nov 9</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:80%"></i>
+                </div>
+                <strong>4</strong><span>Nov 16</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <span class="tl" style="bottom:100%"></span><i style="height:2%" class="zero"></i>
+                </div>
+                <strong>0</strong><span>Now</span>
+              </div>
+            </div>
+            <p class="chart-legend"><i></i>Weekly target: 5 workouts</p>
+            <div class="mini-stats">
+              <div><small>Last 4 weeks</small><b>13 workouts</b></div>
+              <div><small>Avg duration</small><b>48 min</b></div>
+              <div><small>Weekly target</small><b>5 days</b></div>
+            </div>
+          </div>
+          <div class="card" id="dash-upcoming">
+            <div class="card-h">
+              <h2>Upcoming Workouts</h2>
+              <a class="more" href="profile.html#fitness">Edit schedule →</a>
+            </div>
+            <ul class="uplist">
+              <li>
+                <div class="date"><small>NOV</small>24</div>
+                <div class="up-txt">
+                  <h3>Full Body B</h3>
+                  <p class="muted small">Today · 4 exercises · ~45 min</p>
+                </div>
+                <a class="btn sm" href="session.html#b">Start</a>
+              </li>
+              <li>
+                <div class="date"><small>NOV</small>26</div>
+                <div class="up-txt">
+                  <h3>Full Body A</h3>
+                  <p class="muted small">Thu · 4 exercises · ~45 min</p>
+                </div>
+                <a class="btn sec sm" href="session.html#a">Preview</a>
+              </li>
+              <li>
+                <div class="date"><small>NOV</small>27</div>
+                <div class="up-txt">
+                  <h3>Full Body B</h3>
+                  <p class="muted small">Fri · 4 exercises · ~45 min</p>
+                </div>
+                <a class="btn sec sm" href="session.html#b">Preview</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card" id="dash-actions">
+            <div class="card-h"><h2>Quick Actions</h2></div>
+            <div class="qa">
+              <a href="workout-plans.html#plans"><svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg>Browse Plans</a><a href="exercise-library.html"><svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+                  <path d="M4 19V5"></path></svg>Search Exercises</a><a href="goals.html#goal-form"><svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <circle cx="12" cy="12" r="1"></circle></svg>Create a Goal</a><a href="progress.html"><svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg>View Progress</a>
+            </div>
+          </div>
+          <div class="card span-2" id="dash-recent">
+            <div class="card-h">
+              <h2>Recent Workouts</h2>
+              <div class="card-h-r">
+                <a class="more" href="progress.html#history">View all →</a>
+              </div>
+            </div>
+            <ul class="hist">
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Sat, Nov 21</span><span class="muted">48 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Fri, Nov 20</span><span class="muted">54 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Thu, Nov 19</span><span class="muted">49 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Tue, Nov 17</span><span class="muted">50 min · 12/12 sets</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

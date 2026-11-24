@@ -1,0 +1,1944 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Exercise Library – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/exercise-library.js" defer></script>
+  </head>
+  <body data-page="library">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a class="me" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a aria-current="page" class="on" href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <header class="page-head">
+          <h1>Exercise Library</h1>
+          <p>
+            Filter by muscle, equipment, or difficulty, and open any exercise
+            for step-by-step guidance.
+          </p>
+        </header>
+        <div class="lib" id="exercise-list">
+          <form class="lib-form" id="lib-form">
+            <div class="lib-toolbar card">
+              <details class="dd">
+                <summary>
+                  <span class="dd-l">Muscle</span><span class="dd-v dd-v-m">All</span>
+                </summary>
+                <div class="dd-panel" role="radiogroup" aria-label="Muscle">
+                  <input class="sr" type="radio" name="m" id="m-all" value="all" checked/>
+                  <label for="m-all">All muscles</label>
+                  <input class="sr" type="radio" name="m" id="m-chest" value="chest"/>
+                  <label for="m-chest">Chest</label>
+                  <input class="sr" type="radio" name="m" id="m-back" value="back"/>
+                  <label for="m-back">Back</label>
+                  <input class="sr" type="radio" name="m" id="m-shoulders" value="shoulders"/>
+                  <label for="m-shoulders">Shoulders</label>
+                  <input class="sr" type="radio" name="m" id="m-biceps" value="biceps"/>
+                  <label for="m-biceps">Biceps</label>
+                  <input class="sr" type="radio" name="m" id="m-triceps" value="triceps"/>
+                  <label for="m-triceps">Triceps</label>
+                  <input class="sr" type="radio" name="m" id="m-legs" value="legs"/>
+                  <label for="m-legs">Legs</label>
+                  <input class="sr" type="radio" name="m" id="m-core" value="core"/>
+                  <label for="m-core">Core</label>
+                </div>
+              </details>
+              <details class="dd">
+                <summary>
+                  <span class="dd-l">Equipment</span><span class="dd-v dd-v-eq">All</span>
+                </summary>
+                <div class="dd-panel" role="radiogroup" aria-label="Equipment">
+                  <input class="sr" type="radio" name="eq" id="eq-all" value="all" checked/>
+                  <label for="eq-all">All equipment</label>
+                  <input class="sr" type="radio" name="eq" id="eq-bodyweight" value="bodyweight"/>
+                  <label for="eq-bodyweight">Bodyweight</label>
+                  <input class="sr" type="radio" name="eq" id="eq-dumbbells" value="dumbbells"/>
+                  <label for="eq-dumbbells">Dumbbells</label>
+                  <input class="sr" type="radio" name="eq" id="eq-barbell" value="barbell"/>
+                  <label for="eq-barbell">Barbell</label>
+                  <input class="sr" type="radio" name="eq" id="eq-bench" value="bench"/>
+                  <label for="eq-bench">Bench</label>
+                  <input class="sr" type="radio" name="eq" id="eq-cable" value="cable"/>
+                  <label for="eq-cable">Cable machine</label>
+                  <input class="sr" type="radio" name="eq" id="eq-kettlebell" value="kettlebell"/>
+                  <label for="eq-kettlebell">Kettlebell</label>
+                  <input class="sr" type="radio" name="eq" id="eq-bands" value="bands"/>
+                  <label for="eq-bands">Resistance bands</label>
+                  <input class="sr" type="radio" name="eq" id="eq-pullup" value="pullup"/>
+                  <label for="eq-pullup">Pull-up bar</label>
+                </div>
+              </details>
+              <details class="dd">
+                <summary>
+                  <span class="dd-l">Difficulty</span><span class="dd-v dd-v-lv">All</span>
+                </summary>
+                <div class="dd-panel" role="radiogroup" aria-label="Difficulty">
+                  <input class="sr" type="radio" name="lv" id="lv-all" value="all" checked/>
+                  <label for="lv-all">All levels</label>
+                  <input class="sr" type="radio" name="lv" id="lv-beginner" value="beginner"/>
+                  <label for="lv-beginner">Beginner</label>
+                  <input class="sr" type="radio" name="lv" id="lv-intermediate" value="intermediate"/>
+                  <label for="lv-intermediate">Intermediate</label>
+                  <input class="sr" type="radio" name="lv" id="lv-advanced" value="advanced"/>
+                  <label for="lv-advanced">Advanced</label>
+                </div>
+              </details>
+              <div class="lib-toggles">
+                <input
+                  class="sr"
+                  id="fav-only"
+                  name="fav"
+                  type="checkbox" /><label class="toggle" for="fav-only"><svg aria-hidden="true" viewbox="0 0 24 24">
+                    <path
+                      d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg>Favorites</label><input
+                  class="sr"
+                  id="mine-only"
+                  name="mine"
+                  type="checkbox" /><label
+                  class="toggle"
+                  for="mine-only"
+                  title="Filter by the equipment saved in your profile"><svg aria-hidden="true" viewbox="0 0 24 24">
+                    <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg>My Equipment</label><button class="btn ghost sm" type="reset">
+                  Clear filters
+                </button>
+              </div>
+            </div>
+            <div class="card table-card">
+              <table class="xtable">
+                <caption class="sr-only">
+                  Exercises
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Exercise</th>
+                    <th scope="col">Primary muscle</th>
+                    <th scope="col">Secondary muscles</th>
+                    <th scope="col">Level</th>
+                    <th class="ta-r" scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="m-chest lv-beginner eq-bodyweight" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <circle cx="12" cy="4.5" r="2"></circle>
+                            <path
+                              d="M12 7v7M7 10l5-1 5 1M9 21l3-7 3 7"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-push-up">Push-up</a><small>Bodyweight</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Chest</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      Shoulders, Triceps, Core
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Push-up"
+                          class="icon-btn"
+                          href="#ex-push-up"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-0"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-0"
+                          title="Save to favorites"><span class="sr-only">Favorite Push-up</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-chest lv-beginner eq-dumbbells eq-bench" data-equipment="dumbbells+bench">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-dumbbell-bench-press">Dumbbell Bench Press</a><small>Dumbbells, bench</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Chest</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      Triceps, Shoulders
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Dumbbell Bench Press"
+                          class="icon-btn"
+                          href="#ex-dumbbell-bench-press"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-1"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-1"
+                          title="Save to favorites"><span class="sr-only">Favorite Dumbbell Bench Press</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-back lv-beginner eq-dumbbells eq-bench" data-equipment="dumbbells+bench">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-dumbbell-row">Dumbbell Row</a><small>Dumbbell, bench</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Back</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      Biceps, Rear shoulders
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Dumbbell Row"
+                          class="icon-btn"
+                          href="#ex-dumbbell-row"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-2"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-2"
+                          title="Save to favorites"><span class="sr-only">Favorite Dumbbell Row</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-back lv-beginner eq-cable" data-equipment="cable">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path d="M5 3v18M19 3v18M5 5h14"></path>
+                            <circle cx="12" cy="9" r="2"></circle>
+                            <path d="M12 11v6M9 17h6"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-lat-pulldown">Lat Pulldown</a><small>Cable machine</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Back</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Biceps</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Lat Pulldown"
+                          class="icon-btn"
+                          href="#ex-lat-pulldown"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-3"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-3"
+                          title="Save to favorites"><span class="sr-only">Favorite Lat Pulldown</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-shoulders lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-dumbbell-shoulder-press">Dumbbell Shoulder Press</a><small>Dumbbells</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Shoulders</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Triceps</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Dumbbell Shoulder Press"
+                          class="icon-btn"
+                          href="#ex-dumbbell-shoulder-press"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-4"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-4"
+                          title="Save to favorites"><span class="sr-only">Favorite Dumbbell Shoulder Press</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-shoulders lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-lateral-raise">Lateral Raise</a><small>Light dumbbells</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Shoulders</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Upper back</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Lateral Raise"
+                          class="icon-btn"
+                          href="#ex-lateral-raise"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-5"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-5"
+                          title="Save to favorites"><span class="sr-only">Favorite Lateral Raise</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-biceps lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-biceps-curl">Biceps Curl</a><small>Dumbbells</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Biceps</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Forearms</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Biceps Curl"
+                          class="icon-btn"
+                          href="#ex-biceps-curl"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-6"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-6"
+                          title="Save to favorites"><span class="sr-only">Favorite Biceps Curl</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-biceps lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-hammer-curl">Hammer Curl</a><small>Dumbbells</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Biceps</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Forearms</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Hammer Curl"
+                          class="icon-btn"
+                          href="#ex-hammer-curl"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-7"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-7"
+                          title="Save to favorites"><span class="sr-only">Favorite Hammer Curl</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-triceps lv-beginner eq-cable" data-equipment="cable">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path d="M5 3v18M19 3v18M5 5h14"></path>
+                            <circle cx="12" cy="9" r="2"></circle>
+                            <path d="M12 11v6M9 17h6"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-triceps-pushdown">Triceps Pushdown</a><small>Cable machine</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Triceps</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      <span class="muted">—</span>
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Triceps Pushdown"
+                          class="icon-btn"
+                          href="#ex-triceps-pushdown"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-8"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-8"
+                          title="Save to favorites"><span class="sr-only">Favorite Triceps Pushdown</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-triceps lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-overhead-triceps-extension">Overhead Triceps Extension</a><small>One dumbbell</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Triceps</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      <span class="muted">—</span>
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Overhead Triceps Extension"
+                          class="icon-btn"
+                          href="#ex-overhead-triceps-extension"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-9"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-9"
+                          title="Save to favorites"><span class="sr-only">Favorite Overhead Triceps Extension</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner eq-dumbbells" data-equipment="dumbbells">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-goblet-squat">Goblet Squat</a><small>One dumbbell</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Legs</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Core</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Goblet Squat"
+                          class="icon-btn"
+                          href="#ex-goblet-squat"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-10"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-10"
+                          title="Save to favorites"><span class="sr-only">Favorite Goblet Squat</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-intermediate eq-dumbbells eq-barbell" data-equipment="dumbbells,barbell">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-romanian-deadlift">Romanian Deadlift</a><small>Dumbbells or barbell</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Legs</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">
+                      Glutes, Lower back
+                    </td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-intermediate">Intermediate</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Romanian Deadlift"
+                          class="icon-btn"
+                          href="#ex-romanian-deadlift"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-11"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-11"
+                          title="Save to favorites"><span class="sr-only">Favorite Romanian Deadlift</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-core lv-beginner eq-bodyweight" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <circle cx="12" cy="4.5" r="2"></circle>
+                            <path
+                              d="M12 7v7M7 10l5-1 5 1M9 21l3-7 3 7"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-plank">Plank</a><small>Bodyweight</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Core</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Shoulders</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Plank"
+                          class="icon-btn"
+                          href="#ex-plank"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-12"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-12"
+                          title="Save to favorites"><span class="sr-only">Favorite Plank</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-core lv-beginner eq-bodyweight" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname">
+                        <span class="thumb"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <circle cx="12" cy="4.5" r="2"></circle>
+                            <path
+                              d="M12 7v7M7 10l5-1 5 1M9 21l3-7 3 7"></path></svg></span>
+                        <div>
+                          <a class="xlink" href="#ex-dead-bug">Dead Bug</a><small>Bodyweight</small>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary">
+                      <span class="mtag">Core</span>
+                    </td>
+                    <td class="c-sec" data-label="Secondary">Hip flexors</td>
+                    <td class="c-lvl" data-label="Level">
+                      <span class="tag level lvl-beginner">Beginner</span>
+                    </td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a
+                          aria-label="View details for Dead Bug"
+                          class="icon-btn"
+                          href="#ex-dead-bug"
+                          title="View details"><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path>
+                            <circle cx="12" cy="12" r="3"></circle></svg></a><input
+                          class="sr fav-cb"
+                          form="fav-store"
+                          id="fav-13"
+                          type="checkbox" /><label
+                          class="icon-btn fav"
+                          for="fav-13"
+                          title="Save to favorites"><span class="sr-only">Favorite Dead Bug</span><svg aria-hidden="true" viewbox="0 0 24 24">
+                            <path
+                              d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-bodyweight-squat">Bodyweight Squat</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Legs</span></td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Core</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Bodyweight Squat" class="icon-btn" href="#ex-bodyweight-squat" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-14" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-14" title="Save to favorites"><span class="sr-only">Favorite Bodyweight Squat</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-chest lv-beginner" data-equipment="bench">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div><a class="xlink" href="#ex-incline-push-up">Incline Push-up</a><small>Bench</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Chest</span></td>
+                    <td class="c-sec" data-label="Secondary">Shoulders, Triceps</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Incline Push-up" class="icon-btn" href="#ex-incline-push-up" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-15" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-15" title="Save to favorites"><span class="sr-only">Favorite Incline Push-up</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-glute-bridge">Glute Bridge</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Legs</span></td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Hamstrings, Core</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Glute Bridge" class="icon-btn" href="#ex-glute-bridge" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-16" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-16" title="Save to favorites"><span class="sr-only">Favorite Glute Bridge</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-reverse-lunge">Reverse Lunge</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Legs</span></td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Core</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Reverse Lunge" class="icon-btn" href="#ex-reverse-lunge" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-17" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-17" title="Save to favorites"><span class="sr-only">Favorite Reverse Lunge</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-core lv-beginner" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-bird-dog">Bird Dog</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Core</span></td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Shoulders</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Bird Dog" class="icon-btn" href="#ex-bird-dog" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-18" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-18" title="Save to favorites"><span class="sr-only">Favorite Bird Dog</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-core lv-intermediate" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-side-plank">Side Plank</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Core</span></td>
+                    <td class="c-sec" data-label="Secondary">Shoulders, Glutes</td>
+                    <td class="c-lvl"><span class="tag level lvl-intermediate">Intermediate</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Side Plank" class="icon-btn" href="#ex-side-plank" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-19" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-19" title="Save to favorites"><span class="sr-only">Favorite Side Plank</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-chest lv-intermediate" data-equipment="barbell+bench">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div><a class="xlink" href="#ex-bench-press">Barbell Bench Press</a><small>Barbell and bench</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Chest</span></td>
+                    <td class="c-sec" data-label="Secondary">Shoulders, Triceps</td>
+                    <td class="c-lvl"><span class="tag level lvl-intermediate">Intermediate</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Barbell Bench Press" class="icon-btn" href="#ex-bench-press" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-20" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-20" title="Save to favorites"><span class="sr-only">Favorite Barbell Bench Press</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner" data-equipment="kettlebell">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div><a class="xlink" href="#ex-kettlebell-deadlift">Kettlebell Deadlift</a><small>Kettlebell</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Legs</span></td>
+                    <td class="c-sec" data-label="Secondary">Glutes, Hamstrings, Core</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Kettlebell Deadlift" class="icon-btn" href="#ex-kettlebell-deadlift" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-21" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-21" title="Save to favorites"><span class="sr-only">Favorite Kettlebell Deadlift</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-shoulders lv-beginner" data-equipment="bands">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div><a class="xlink" href="#ex-band-pull-apart">Band Pull-Apart</a><small>Resistance bands</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Shoulders</span></td>
+                    <td class="c-sec" data-label="Secondary">Upper back</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Band Pull-Apart" class="icon-btn" href="#ex-band-pull-apart" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-22" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-22" title="Save to favorites"><span class="sr-only">Favorite Band Pull-Apart</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-back lv-advanced" data-equipment="pullup">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg></span>
+                        <div><a class="xlink" href="#ex-pull-up">Pull-up</a><small>Pull-up bar</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Back</span></td>
+                    <td class="c-sec" data-label="Secondary">Biceps, Forearms</td>
+                    <td class="c-lvl"><span class="tag level lvl-advanced">Advanced</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Pull-up" class="icon-btn" href="#ex-pull-up" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-23" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-23" title="Save to favorites"><span class="sr-only">Favorite Pull-up</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="m-legs lv-beginner" data-equipment="bodyweight">
+                    <td class="c-name">
+                      <div class="xname"><span class="thumb"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3v2m-5 4 5 2 5-2m-5 2v4m0 0-4 6m4-6 4 6"></path></svg></span>
+                        <div><a class="xlink" href="#ex-standing-calf-raise">Standing Calf Raise</a><small>Bodyweight</small></div>
+                      </div>
+                    </td>
+                    <td class="c-pri" data-label="Primary"><span class="mtag">Legs</span></td>
+                    <td class="c-sec" data-label="Secondary">Ankles</td>
+                    <td class="c-lvl"><span class="tag level lvl-beginner">Beginner</span></td>
+                    <td class="c-act">
+                      <div class="row-actions">
+                        <a aria-label="View details for Standing Calf Raise" class="icon-btn" href="#ex-standing-calf-raise" title="View details"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path></svg></a>
+                        <input class="sr fav-cb" form="fav-store" id="fav-24" type="checkbox" />
+                        <label class="icon-btn fav" for="fav-24" title="Save to favorites"><span class="sr-only">Favorite Standing Calf Raise</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.1 9.5l6.1-.9z"></path></svg></label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="lib-empty" class="empty-state sm" hidden>
+                <h3>No exercises match</h3>
+                <p class="muted">Try different filters or update your <a class="more" href="profile.html#fitness">available equipment</a>.</p>
+              </div>
+              <div class="lib-foot">
+                <div class="per" role="radiogroup" aria-label="Rows per page">
+                  <span>Rows per page</span>
+                  <div class="seg">
+                    <input class="sr" id="pp5" name="pp" value="5" type="radio"/>
+                    <label for="pp5">5</label>
+                    <input checked class="sr" id="pp10" name="pp" value="10" type="radio"/>
+                    <label for="pp10">10</label>
+                    <input class="sr" id="ppall" name="pp" value="all" type="radio"/>
+                    <label for="ppall">All</label>
+                  </div>
+                </div>
+                <span class="muted small range" aria-live="polite"></span>
+                <nav aria-label="Exercise pages" class="pager" hidden></nav>
+              </div>
+            </div>
+          </form>
+          <form id="fav-store"></form>
+          <div class="modal" id="ex-bodyweight-squat">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-bodyweight-squat-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-bodyweight-squat-t">Bodyweight Squat</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A squat you can do without added weight.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Legs. Secondary: Glutes, Core.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Stand with your feet about shoulder-width apart.</li><li>Bend your knees and hips to lower as far as you can control.</li><li>Press through your feet to stand tall.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your knees tracking in the direction of your toes.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 8–12</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-14"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-incline-push-up">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-incline-push-up-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-incline-push-up-t">Incline Push-up</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Chest</span><span class="tag neutral">Bench</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>An elevated push-up that reduces the load on the arms.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Chest. Secondary: Shoulders, Triceps.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Set your hands on a stable bench and step back.</li><li>Lower your chest toward the bench without letting your hips sag.</li><li>Press back to the starting position.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your head, hips, and heels in a straight line.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 8–12</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-15"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-glute-bridge">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-glute-bridge-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-glute-bridge-t">Glute Bridge</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A floor exercise that trains hip extension.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Legs. Secondary: Glutes, Hamstrings, Core.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Lie down with knees bent and feet flat.</li><li>Press through your heels to lift your hips.</li><li>Pause briefly and lower with control.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Finish by squeezing your glutes instead of arching your back.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 10–15</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-16"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-reverse-lunge">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-reverse-lunge-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-reverse-lunge-t">Reverse Lunge</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A step-back lunge that trains one leg at a time.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Legs. Secondary: Glutes, Core.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Stand tall and step one foot back.</li><li>Bend both knees while keeping the front foot planted.</li><li>Push through the front foot to stand, then switch sides.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your front knee pointed in the same direction as your toes.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 8 per side</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-17"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-bird-dog">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-bird-dog-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-bird-dog-t">Bird Dog</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Core</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>An exercise for trunk stability while the arms and legs move.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Core. Secondary: Glutes, Shoulders.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Start on hands and knees.</li><li>Reach one arm and the opposite leg away from you.</li><li>Return slowly and repeat on the other side.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your hips level and use a controlled reach.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 6–10 per side</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-18"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-side-plank">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-side-plank-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-side-plank-t">Side Plank</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-intermediate">Intermediate</span><span class="tag soft">Core</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A side hold that trains the muscles along the trunk.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Core. Secondary: Shoulders, Glutes.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Lie on one side with your elbow under your shoulder.</li><li>Lift your hips until your body forms a straight line.</li><li>Hold while breathing steadily, then switch sides.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your hips stacked and shorten the hold when your form changes.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 15–30 sec per side</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-19"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-bench-press">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-bench-press-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-bench-press-t">Barbell Bench Press</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-intermediate">Intermediate</span><span class="tag soft">Chest</span><span class="tag neutral">Barbell and bench</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A horizontal press performed with a barbell and bench.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Chest. Secondary: Shoulders, Triceps.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Set your feet flat and position yourself under the bar.</li><li>With a spotter or correctly set safeties, lower the bar toward your chest under control.</li><li>Press up while keeping your feet planted.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Start light and keep your wrists stacked above your forearms.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 6–10</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-20"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-kettlebell-deadlift">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-kettlebell-deadlift-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-kettlebell-deadlift-t">Kettlebell Deadlift</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">Kettlebell</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A hip hinge using a kettlebell between the feet.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Legs. Secondary: Glutes, Hamstrings, Core.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Place the kettlebell between your feet.</li><li>Hinge your hips back and reach for the handle.</li><li>Stand tall, then guide the kettlebell back down.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep the weight close and use a range you can control.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 8–12</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-21"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-band-pull-apart">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-band-pull-apart-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-band-pull-apart-t">Band Pull-Apart</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Shoulders</span><span class="tag neutral">Resistance bands</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A light band exercise for the rear shoulders and upper back.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Shoulders. Secondary: Upper back.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Hold a light band at chest height.</li><li>Pull your hands apart until your arms move outward comfortably.</li><li>Return slowly to the starting position.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep your ribs down and avoid shrugging.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 10–15</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-22"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-pull-up">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-pull-up-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-pull-up-t">Pull-up</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-advanced">Advanced</span><span class="tag soft">Back</span><span class="tag neutral">Pull-up bar</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A vertical pull using a securely mounted bar.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Back. Secondary: Biceps, Forearms.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Grip a secure bar with your palms facing away.</li><li>Pull your elbows down until your chin approaches the bar.</li><li>Lower under control.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Avoid swinging. Use an assisted version if you cannot control the movement.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 3–8</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-23"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-standing-calf-raise">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div aria-labelledby="ex-standing-calf-raise-t" aria-modal="true" class="dialog ex-dialog" role="dialog">
+              <div class="dlg-h"><h2 id="ex-standing-calf-raise-t">Standing Calf Raise</h2><a aria-label="Close" class="close" href="#exercise-list">✕</a></div>
+              <div class="xd-meta"><span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">Bodyweight</span></div>
+              <section class="exercise-guide-section"><h3>Description</h3><div>A standing movement that trains the calves.</div></section>
+              <section class="exercise-guide-section"><h3>Targeted muscles</h3><div>Primary: Legs. Secondary: Ankles.</div></section>
+              <section class="exercise-guide-section"><h3>Steps</h3><ol><li>Stand with both feet flat and use a wall for balance if needed.</li><li>Raise your heels and pause at the top.</li><li>Lower your heels slowly.</li></ol></section>
+              <section class="exercise-guide-section"><h3>Proper form</h3><div>Keep the movement smooth and avoid bouncing.</div></section>
+              <section class="exercise-guide-section"><h3>Suggested sets and reps</h3><div>2–3 × 10–15</div></section>
+              <div class="xd-actions"><label class="btn sec sm fav-lbl" for="fav-24"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label></div>
+            </div>
+          </div>
+          <div class="modal" id="ex-push-up">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-push-up-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-push-up-t">Push-up</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Chest</span><span class="tag neutral">Bodyweight</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A bodyweight press that builds the chest and arms.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Chest. Secondary: Shoulders, triceps, core.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>None</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Place hands slightly wider than your shoulders, body in a
+                      straight line.
+                    </li>
+                    <li>
+                      Lower your chest toward the floor with elbows about 45°
+                      from your body.
+                    </li>
+                    <li>Push back up without letting your hips sag.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your core tight and your neck relaxed.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Sagging hips or flaring elbows wide.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-0"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-dumbbell-bench-press">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-dumbbell-bench-press-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-dumbbell-bench-press-t">Dumbbell Bench Press</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Chest</span><span class="tag neutral">Dumbbells, bench</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A controlled press that builds chest strength.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Chest. Secondary: Triceps, shoulders.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbells, bench</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Lie on a bench, feet flat, dumbbells above your chest.
+                    </li>
+                    <li>
+                      Lower slowly until your elbows are about level with the
+                      bench.
+                    </li>
+                    <li>Press the weights back up.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your shoulder blades pulled back and down.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Bouncing the weights or arching the back a lot.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8–10</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-1"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-dumbbell-row">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-dumbbell-row-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-dumbbell-row-t">Dumbbell Row</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Back</span><span class="tag neutral">Dumbbell, bench</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A pulling move that builds the upper and middle back.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Back. Secondary: Biceps, rear shoulders.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbell, bench</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Place one hand and knee on a bench, back flat.</li>
+                    <li>Pull the dumbbell toward your hip.</li>
+                    <li>Lower it slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your back flat and your neck in line.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Twisting your body or using momentum.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 10 each side</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-2"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-lat-pulldown">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-lat-pulldown-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-lat-pulldown-t">Lat Pulldown</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Back</span><span class="tag neutral">Cable machine</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>
+                  A vertical pull that targets the wide muscles of the back.
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Back. Secondary: Biceps.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Cable machine</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Sit with thighs under the pad, grip a little wider than
+                      your shoulders.
+                    </li>
+                    <li>Pull the bar to your upper chest, elbows down.</li>
+                    <li>Let it rise slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Sit tall and lead with your elbows.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Leaning far back or pulling behind the neck.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 10–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-3"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-dumbbell-shoulder-press">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-dumbbell-shoulder-press-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-dumbbell-shoulder-press-t">
+                  Dumbbell Shoulder Press
+                </h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Shoulders</span><span class="tag neutral">Dumbbells</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>An overhead press for strong shoulders.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Shoulders. Secondary: Triceps.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbells</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Hold dumbbells at shoulder height.</li>
+                    <li>Press overhead until your arms are almost straight.</li>
+                    <li>Lower slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your ribs down and your core tight.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Arching the lower back or using too much weight.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8–10</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-4"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-lateral-raise">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-lateral-raise-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-lateral-raise-t">Lateral Raise</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Shoulders</span><span class="tag neutral">Light dumbbells</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>
+                  A light isolation move for the sides of the shoulders.
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Shoulders. Secondary: Upper back.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Light dumbbells</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Hold light dumbbells at your sides, elbows slightly bent.
+                    </li>
+                    <li>Raise your arms to shoulder height.</li>
+                    <li>Lower slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Lift with the shoulders, not the neck.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Swinging the weights or shrugging.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 12–15</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-5"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-biceps-curl">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-biceps-curl-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-biceps-curl-t">Biceps Curl</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Biceps</span><span class="tag neutral">Dumbbells</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>The classic move for the front of the arm.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Biceps. Secondary: Forearms.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbells</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Stand with elbows close to your sides.</li>
+                    <li>Curl the weights up and squeeze.</li>
+                    <li>Lower slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your elbows still.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Swinging your body to lift the weight.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 10–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-6"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-hammer-curl">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-hammer-curl-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-hammer-curl-t">Hammer Curl</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Biceps</span><span class="tag neutral">Dumbbells</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A neutral-grip curl that also works the forearms.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Biceps. Secondary: Forearms.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbells</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Hold dumbbells with palms facing each other.</li>
+                    <li>Curl up without turning your wrists.</li>
+                    <li>Lower slowly.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your wrists straight.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Leaning back to lift.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 10–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-7"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-triceps-pushdown">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-triceps-pushdown-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-triceps-pushdown-t">Triceps Pushdown</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Triceps</span><span class="tag neutral">Cable machine</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>An isolation move for the back of the arm.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Triceps. Secondary: None.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Cable machine</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Stand at a high cable, elbows pinned to your sides.</li>
+                    <li>Push down until your arms are straight.</li>
+                    <li>Return slowly to a 90° bend.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your elbows at your sides.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Flaring elbows or leaning on the bar.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 10–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-8"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-overhead-triceps-extension">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-overhead-triceps-extension-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-overhead-triceps-extension-t">
+                  Overhead Triceps Extension
+                </h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Triceps</span><span class="tag neutral">One dumbbell</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>
+                  Stretches and strengthens the long part of the triceps.
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Triceps. Secondary: None.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>One dumbbell</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Hold one dumbbell overhead with both hands.</li>
+                    <li>Bend your elbows to lower it behind your head.</li>
+                    <li>Extend your arms back up.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your upper arms close to your ears.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Letting the elbows flare out.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>2 × 10–12</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-9"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-goblet-squat">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-goblet-squat-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-goblet-squat-t">Goblet Squat</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Legs</span><span class="tag neutral">One dumbbell</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A beginner-friendly squat that teaches good form.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Legs. Secondary: Glutes, core.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>One dumbbell</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Hold a dumbbell at your chest, feet shoulder-width apart.
+                    </li>
+                    <li>Sit your hips back and down, chest up.</li>
+                    <li>Stand by pushing through the floor.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your heels down and chest tall.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Knees caving in or heels lifting.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8–10</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-10"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-romanian-deadlift">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-romanian-deadlift-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-romanian-deadlift-t">Romanian Deadlift</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-intermediate">Intermediate</span><span class="tag soft">Legs</span><span class="tag neutral">Dumbbells or barbell</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A hip-hinge that builds the back of the legs.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Legs. Secondary: Glutes, lower back.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>Dumbbells or barbell</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Hold weights in front of your thighs, knees slightly bent.
+                    </li>
+                    <li>
+                      Push your hips back and slide the weights down your legs.
+                    </li>
+                    <li>Squeeze your glutes to stand.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Keep your back flat and the weights close.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Rounding the back.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8–10</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-11"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-plank">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-plank-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-plank-t">Plank</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Core</span><span class="tag neutral">Bodyweight</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A hold that builds core stability.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Core. Secondary: Shoulders.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>None</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>
+                      Place forearms on the floor, elbows under your shoulders.
+                    </li>
+                    <li>
+                      Keep your body in a straight line and tighten your abs.
+                    </li>
+                    <li>Hold, breathing steadily.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Squeeze your glutes and abs.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Sagging or lifting the hips.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 20–40 sec</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-12"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+          <div class="modal" id="ex-dead-bug">
+            <a aria-label="Close" class="scrim" href="#exercise-list"></a>
+            <div
+              aria-labelledby="ex-dead-bug-t"
+              aria-modal="true"
+              class="dialog ex-dialog"
+              role="dialog">
+              <div class="dlg-h">
+                <h2 id="ex-dead-bug-t">Dead Bug</h2>
+                <a aria-label="Close" class="close" href="#exercise-list">✕</a>
+              </div>
+              <div class="xd-meta">
+                <span class="tag level lvl-beginner">Beginner</span><span class="tag soft">Core</span><span class="tag neutral">Bodyweight</span>
+              </div>
+              <section class="exercise-guide-section">
+                <h3>Description</h3>
+                <div>A slow core exercise that protects the lower back.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Targeted muscles</h3>
+                <div>Primary: Core. Secondary: Hip flexors.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Equipment</h3>
+                <div>None</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Steps</h3>
+                <div>
+                  <ol>
+                    <li>Lie on your back, arms up, knees bent at 90°.</li>
+                    <li>Lower the opposite arm and leg slowly, back flat.</li>
+                    <li>Return and switch sides.</li>
+                  </ol>
+                </div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Proper form</h3>
+                <div>Press your lower back into the floor.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Common mistake</h3>
+                <div>Letting the lower back lift off the floor.</div>
+              </section>
+              <section class="exercise-guide-section">
+                <h3>Suggested sets and reps</h3>
+                <div>3 × 8 each side</div>
+              </section>
+              <div class="xd-actions">
+                <label class="btn sec sm fav-lbl" for="fav-13"><span class="fl-off">☆ Save to favorites</span><span class="fl-on">★ Saved to favorites</span></label>
+              </div>
+              <p class="safety-note">
+                <strong>Safety:</strong> Start with a manageable resistance,
+                move with control, breathe steadily, and stop if you feel sharp
+                pain. Seek qualified guidance for injuries or medical
+                restrictions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

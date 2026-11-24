@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport" />
+    <title>Create your account – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/auth.js" defer></script>
+  </head>
+  <body class="auth" data-page="signup">
+    <form class="auth-card" method="post">
+      <a class="logo" href="index.html"><img src="images/musclehub-logo.svg" alt="Muscle Hub" width="256" height="178" /></a>
+      <h1>Create your account</h1>
+      <p>Start training with a plan that fits you.</p>
+      <label>Name<input
+          name="name"
+          autocomplete="name"
+          minlength="2"
+          maxlength="40"
+          placeholder="Your name"
+          required=""
+          type="text" /></label><label>Email<input
+          name="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          required=""
+          type="email" /></label><label>Password<input
+          name="password"
+          autocomplete="new-password"
+          minlength="8"
+          placeholder="At least 8 characters"
+          required=""
+          type="password" /></label>
+      <button class="btn" type="submit" disabled>Sign up</button>
+      <p class="alt">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+    </form>
+  </body>
+</html>

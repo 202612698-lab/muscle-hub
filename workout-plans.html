@@ -1,0 +1,3672 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Workout Plans – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/workouts.js" defer></script>
+    <script src="js/selects.js" defer></script>
+  </head>
+  <body data-page="plans">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a class="me" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a aria-current="page" class="on" href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <header class="page-head head-row">
+          <div>
+            <h1>Workout Plans</h1>
+            <p>
+              Follow a recommended routine or build a workout plan of your own.
+            </p>
+          </div>
+          <a class="btn" href="#add-plan">+ Add Workout Plan</a>
+        </header>
+        <div class="pw stack">
+          <div class="workout-tabs" role="tablist" aria-label="Workout lists">
+            <button id="tab-my-workouts" type="button" role="tab" aria-selected="true" aria-controls="my-workouts">My Workouts</button>
+            <button id="tab-recommended-workouts" type="button" role="tab" aria-selected="false" aria-controls="recommended-workouts" tabindex="-1">Recommended Workouts</button>
+          </div>
+          <section id="my-workouts" role="tabpanel" aria-labelledby="tab-my-workouts">
+            <div class="empty-state" id="workouts-empty">
+              <span class="es-ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path>
+              </svg></span>
+              <h3>Create your first workout</h3>
+              <p class="muted">Pick exercises from the library and build a routine that fits your training.</p>
+              <div class="actions">
+                <a class="btn" href="#add-plan">Create Your First Workout</a>
+                <a class="btn sec" href="#recommended-workouts" id="browse-recommended">Browse recommended workouts</a>
+              </div>
+            </div>
+            <div class="plans-grid" id="my-plans-grid"></div>
+          </section>
+          <section id="recommended-workouts" role="tabpanel" aria-labelledby="tab-recommended-workouts" hidden>
+            <form class="plan-filters" id="fitness-goals" aria-label="Find your plan">
+              <div class="sec-title">
+                <h2 class="sec-h">Find Your Plan</h2>
+                <p class="muted small">Filter by goal, experience level, or workout location.</p>
+              </div>
+              <div class="plan-filter-toolbar">
+                <details class="dd">
+                  <summary>
+                    <span class="dd-l">Goal</span>
+                    <span class="dd-v">All</span>
+                  </summary>
+                  <div class="dd-panel" role="radiogroup" aria-label="Goal">
+                    <input checked="" class="sr" id="goal-any" name="goal" type="radio"/>
+                    <label for="goal-any">All</label>
+                    <input class="sr" id="goal-build" name="goal" type="radio"/>
+                    <label for="goal-build">Build Muscle</label>
+                    <input class="sr" id="goal-strength" name="goal" type="radio"/>
+                    <label for="goal-strength">Improve Strength</label>
+                    <input class="sr" id="goal-fitness" name="goal" type="radio"/>
+                    <label for="goal-fitness">Improve Overall Fitness</label>
+                    <input class="sr" id="goal-active" name="goal" type="radio"/>
+                    <label for="goal-active">Stay Active</label>
+                  </div>
+                </details>
+                <details class="dd">
+                  <summary>
+                    <span class="dd-l">Level</span>
+                    <span class="dd-v">All</span>
+                  </summary>
+                  <div class="dd-panel" role="radiogroup" aria-label="Experience level">
+                    <input checked="" class="sr" id="lv-any" name="lv" type="radio"/>
+                    <label for="lv-any">All</label>
+                    <input class="sr" id="lv-beginner" name="lv" type="radio"/>
+                    <label for="lv-beginner">Beginner</label>
+                    <input class="sr" id="lv-intermediate" name="lv" type="radio"/>
+                    <label for="lv-intermediate">Intermediate</label>
+                    <input class="sr" id="lv-advanced" name="lv" type="radio"/>
+                    <label for="lv-advanced">Advanced</label>
+                  </div>
+                </details>
+                <details class="dd">
+                  <summary>
+                    <span class="dd-l">Location</span>
+                    <span class="dd-v">All</span>
+                  </summary>
+                  <div class="dd-panel" role="radiogroup" aria-label="Where you train">
+                    <input checked="" class="sr" id="loc-any" name="loc" type="radio"/>
+                    <label for="loc-any">All</label>
+                    <input class="sr" id="loc-home" name="loc" type="radio"/>
+                    <label for="loc-home">At Home</label>
+                    <input class="sr" id="loc-gym" name="loc" type="radio"/>
+                    <label for="loc-gym">At the Gym</label>
+                  </div>
+                </details>
+                <button class="btn ghost sm" type="reset">Clear filters</button>
+              </div>
+            </form>
+            <section id="plans">
+              <div class="sec-title">
+                <h2 class="sec-h">Recommended Workout Plans</h2>
+                <p class="muted small">
+                  Ready-made routines matched to your level.
+                </p>
+              </div>
+              <p class="card nomatch">
+                No plan matches these choices yet. Try a different goal, level, or
+                location.
+              </p>
+              <div class="plans-grid">
+                <article
+                  class="card plan-card lv-beginner g-build g-strength g-fitness w-home w-gym">
+                  <input
+                    checked=""
+                    class="sr st st-none"
+                    id="full-body-none"
+                    name="st-full-body"
+                    type="radio" /><input
+                    class="sr st st-menu"
+                    id="full-body-menu"
+                    name="st-full-body"
+                    type="radio" /><input
+                    class="sr st st-edit"
+                    id="full-body-edit"
+                    name="st-full-body"
+                    type="radio" /><input
+                    class="sr st st-ask"
+                    id="full-body-ask"
+                    name="st-full-body"
+                    type="radio" /><input
+                    class="sr st st-del"
+                    id="full-body-del"
+                    name="st-full-body"
+                    type="radio" />
+                  <div class="card-h">
+                    <h3>Full Body Strength</h3>
+                    <div class="kebab">
+                      <label
+                        aria-label="Options for Full Body Strength"
+                        class="dots"
+                        for="full-body-menu">⋮</label>
+                      <div class="menu-pop">
+                        <label class="scrimx" for="full-body-none"></label>
+                        <ul>
+                          <li><label for="full-body-edit">Edit</label></li>
+                          <li>
+                            <label class="danger" for="full-body-ask">Delete</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="ptags">
+                      <span class="tag level lvl-beginner">Beginner</span><span class="tag soft freq">3 days / week</span><span class="tag neutral muscles">Chest, Back, Legs, Core</span>
+                    </div>
+                  </div>
+                  <div class="chips tabs">
+                    <input checked="" class="sr vt v1" id="full-body-v1" name="v-full-body" type="radio"/>
+                    <label class="chip" for="full-body-v1">Full Body A</label>
+                    <input class="sr vt v2" id="full-body-v2" name="v-full-body" type="radio"/>
+                    <label class="chip" for="full-body-v2">Full Body B</label>
+                  </div>
+                  <div class="rt r1">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Goblet Squat</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Push-up</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dumbbell Row</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Plank</td>
+                          <td>3 × 30 sec</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rt r2">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Romanian Deadlift</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dumbbell Shoulder Press</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Glute Bridge</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dead Bug</td>
+                          <td>3 × 8</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pc-foot">
+                    <a class="btn sm" href="session.html">Start Workout</a><span class="tag soft">Your active plan</span>
+                  </div>
+                  <div class="modal m-edit">
+                    <label class="scrim" for="full-body-none"></label>
+                    <div
+                      aria-label="Edit Full Body Strength"
+                      class="dialog lg"
+                      role="dialog">
+                      <div class="dlg-h">
+                        <h2>Edit Workout Plan</h2>
+                        <label
+                          aria-label="Close"
+                          class="close"
+                          for="full-body-none">✕</label>
+                      </div>
+                      <div class="form">
+                        <div class="field full">
+                          <label for="e-full-body-name">Workout name</label><input
+                            id="e-full-body-name"
+                            placeholder="e.g. Home Chest Day"
+                            type="text"
+                            value="Full Body Strength" />
+                        </div>
+                        <div class="field">
+                          <label for="e-full-body-goal">Fitness goal</label><select id="e-full-body-goal">
+                            <option selected="">Build Muscle</option>
+                            <option>Improve Strength</option>
+                            <option>Improve Overall Fitness</option>
+                            <option>Stay Active and Healthy</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label for="e-full-body-level">Experience level</label><select id="e-full-body-level">
+                            <option selected="">Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Advanced</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label>Workout location</label>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-full-body-loc-home" name="e-full-body-loc" type="radio"/>
+                            <label class="chip" for="e-full-body-loc-home">Home</label>
+                            <input class="sr" id="e-full-body-loc-gym" name="e-full-body-loc" type="radio"/>
+                            <label class="chip" for="e-full-body-loc-gym">Gym</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="e-full-body-freq">Workout frequency</label><select id="e-full-body-freq">
+                            <option>2 days per week</option>
+                            <option selected="">3 days per week</option>
+                            <option>4 days per week</option>
+                            <option>5 days per week</option>
+                            <option>6 days per week</option>
+                          </select>
+                        </div>
+                        <fieldset class="field full">
+                          <legend>Targeted muscle groups</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-full-body-m-chest" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-chest">Chest</label>
+                            <input checked="" class="sr" id="e-full-body-m-back" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-back">Back</label>
+                            <input class="sr" id="e-full-body-m-shoulders" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-shoulders">Shoulders</label>
+                            <input class="sr" id="e-full-body-m-arms" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-arms">Arms</label>
+                            <input checked="" class="sr" id="e-full-body-m-legs" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-legs">Legs</label>
+                            <input checked="" class="sr" id="e-full-body-m-core" type="checkbox"/>
+                            <label class="chip" for="e-full-body-m-core">Core</label>
+                          </div>
+                        </fieldset>
+                        <fieldset class="field full">
+                          <legend>Available training days</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-full-body-d-mon" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-mon">Mon</label>
+                            <input class="sr" id="e-full-body-d-tue" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-tue">Tue</label>
+                            <input checked="" class="sr" id="e-full-body-d-wed" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-wed">Wed</label>
+                            <input class="sr" id="e-full-body-d-thu" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-thu">Thu</label>
+                            <input checked="" class="sr" id="e-full-body-d-fri" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-fri">Fri</label>
+                            <input class="sr" id="e-full-body-d-sat" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-sat">Sat</label>
+                            <input class="sr" id="e-full-body-d-sun" type="checkbox"/>
+                            <label class="chip" for="e-full-body-d-sun">Sun</label>
+                          </div>
+                        </fieldset>
+                        <div class="field full">
+                          <label>Exercises</label>
+                          <div class="xlist">
+                            <p class="xgroup">Full Body A</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x1-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x1-n">Exercise</label><input
+                                  id="e-full-body-x1-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Goblet Squat" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x1-s">Sets</label><input
+                                  id="e-full-body-x1-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x1-r">Reps</label><input
+                                  id="e-full-body-x1-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x1-d">Duration</label><input
+                                  id="e-full-body-x1-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x1-t">Rest</label><input
+                                  id="e-full-body-x1-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x1-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x2-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x2-n">Exercise</label><input
+                                  id="e-full-body-x2-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Push-up" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x2-s">Sets</label><input
+                                  id="e-full-body-x2-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x2-r">Reps</label><input
+                                  id="e-full-body-x2-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x2-d">Duration</label><input
+                                  id="e-full-body-x2-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x2-t">Rest</label><input
+                                  id="e-full-body-x2-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x2-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x3-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x3-n">Exercise</label><input
+                                  id="e-full-body-x3-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dumbbell Row" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x3-s">Sets</label><input
+                                  id="e-full-body-x3-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x3-r">Reps</label><input
+                                  id="e-full-body-x3-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x3-d">Duration</label><input
+                                  id="e-full-body-x3-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x3-t">Rest</label><input
+                                  id="e-full-body-x3-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x3-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x4-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x4-n">Exercise</label><input
+                                  id="e-full-body-x4-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Plank" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x4-s">Sets</label><input
+                                  id="e-full-body-x4-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x4-r">Reps</label><input
+                                  id="e-full-body-x4-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x4-d">Duration</label><input
+                                  id="e-full-body-x4-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="30 sec" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x4-t">Rest</label><input
+                                  id="e-full-body-x4-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x4-rm">✕</label>
+                            </div>
+                            <p class="xgroup">Full Body B</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x5-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x5-n">Exercise</label><input
+                                  id="e-full-body-x5-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Romanian Deadlift" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x5-s">Sets</label><input
+                                  id="e-full-body-x5-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x5-r">Reps</label><input
+                                  id="e-full-body-x5-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x5-d">Duration</label><input
+                                  id="e-full-body-x5-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x5-t">Rest</label><input
+                                  id="e-full-body-x5-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x5-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x6-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x6-n">Exercise</label><input
+                                  id="e-full-body-x6-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dumbbell Shoulder Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x6-s">Sets</label><input
+                                  id="e-full-body-x6-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x6-r">Reps</label><input
+                                  id="e-full-body-x6-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x6-d">Duration</label><input
+                                  id="e-full-body-x6-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x6-t">Rest</label><input
+                                  id="e-full-body-x6-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x6-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x7-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x7-n">Exercise</label><input
+                                  id="e-full-body-x7-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Glute Bridge" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x7-s">Sets</label><input
+                                  id="e-full-body-x7-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x7-r">Reps</label><input
+                                  id="e-full-body-x7-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x7-d">Duration</label><input
+                                  id="e-full-body-x7-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x7-t">Rest</label><input
+                                  id="e-full-body-x7-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x7-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-full-body-x8-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-full-body-x8-n">Exercise</label><input
+                                  id="e-full-body-x8-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dead Bug" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x8-s">Sets</label><input
+                                  id="e-full-body-x8-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x8-r">Reps</label><input
+                                  id="e-full-body-x8-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x8-d">Duration</label><input
+                                  id="e-full-body-x8-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-full-body-x8-t">Rest</label><input
+                                  id="e-full-body-x8-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-full-body-x8-rm">✕</label>
+                            </div>
+                            <div class="xa">
+                              <input class="sr" id="e-full-body-a1" type="checkbox"/>
+                              <label class="xlab btn sec sm" for="e-full-body-a1">+ Add exercise</label>
+                              <div class="xnew">
+                                <div class="xrow">
+                                  <input
+                                    class="sr rm"
+                                    id="e-full-body-n1-rm"
+                                    type="checkbox" />
+                                  <div class="xf nm">
+                                    <label for="e-full-body-n1-n">Exercise</label><input
+                                      id="e-full-body-n1-n"
+                                      placeholder="e.g. Push-up"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-full-body-n1-s">Sets</label><input
+                                      id="e-full-body-n1-s"
+                                      placeholder="3"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-full-body-n1-r">Reps</label><input
+                                      id="e-full-body-n1-r"
+                                      placeholder="10"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-full-body-n1-d">Duration</label><input
+                                      id="e-full-body-n1-d"
+                                      placeholder="optional"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-full-body-n1-t">Rest</label><input
+                                      id="e-full-body-n1-t"
+                                      placeholder="60 sec"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <label
+                                    aria-label="Remove exercise"
+                                    class="xdel"
+                                    for="e-full-body-n1-rm">✕</label>
+                                </div>
+                                <div class="xa">
+                                  <input class="sr" id="e-full-body-a2" type="checkbox"/>
+                                  <label class="xlab btn sec sm" for="e-full-body-a2">+ Add exercise</label>
+                                  <div class="xnew">
+                                    <div class="xrow">
+                                      <input
+                                        class="sr rm"
+                                        id="e-full-body-n2-rm"
+                                        type="checkbox" />
+                                      <div class="xf nm">
+                                        <label for="e-full-body-n2-n">Exercise</label><input
+                                          id="e-full-body-n2-n"
+                                          placeholder="e.g. Push-up"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-full-body-n2-s">Sets</label><input
+                                          id="e-full-body-n2-s"
+                                          placeholder="3"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-full-body-n2-r">Reps</label><input
+                                          id="e-full-body-n2-r"
+                                          placeholder="10"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-full-body-n2-d">Duration</label><input
+                                          id="e-full-body-n2-d"
+                                          placeholder="optional"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-full-body-n2-t">Rest</label><input
+                                          id="e-full-body-n2-t"
+                                          placeholder="60 sec"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <label
+                                        aria-label="Remove exercise"
+                                        class="xdel"
+                                        for="e-full-body-n2-rm">✕</label>
+                                    </div>
+                                    <div class="xa">
+                                      <input class="sr" id="e-full-body-a3" type="checkbox"/>
+                                      <label class="xlab btn sec sm" for="e-full-body-a3">+ Add exercise</label>
+                                      <div class="xnew">
+                                        <div class="xrow">
+                                          <input
+                                            class="sr rm"
+                                            id="e-full-body-n3-rm"
+                                            type="checkbox" />
+                                          <div class="xf nm">
+                                            <label for="e-full-body-n3-n">Exercise</label><input
+                                              id="e-full-body-n3-n"
+                                              placeholder="e.g. Push-up"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-full-body-n3-s">Sets</label><input
+                                              id="e-full-body-n3-s"
+                                              placeholder="3"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-full-body-n3-r">Reps</label><input
+                                              id="e-full-body-n3-r"
+                                              placeholder="10"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-full-body-n3-d">Duration</label><input
+                                              id="e-full-body-n3-d"
+                                              placeholder="optional"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-full-body-n3-t">Rest</label><input
+                                              id="e-full-body-n3-t"
+                                              placeholder="60 sec"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <label
+                                            aria-label="Remove exercise"
+                                            class="xdel"
+                                            for="e-full-body-n3-rm">✕</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions full">
+                          <label class="btn" for="full-body-none">Save Workout</label><label class="btn sec" for="full-body-none">Cancel</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal m-ask">
+                    <label class="scrim" for="full-body-none"></label>
+                    <div
+                      aria-label="Delete Full Body Strength"
+                      class="dialog sm"
+                      role="alertdialog">
+                      <h2>Delete workout plan?</h2>
+                      <p class="muted">
+                        Are you sure you want to delete “Full Body Strength”? This
+                        cannot be undone.
+                      </p>
+                      <div class="actions">
+                        <label class="btn sec" for="full-body-none">Cancel</label><label class="btn danger" for="full-body-del">Delete</label>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article
+                  class="card plan-card lv-beginner g-active g-fitness w-home w-gym">
+                  <input
+                    checked=""
+                    class="sr st st-none"
+                    id="active-start-none"
+                    name="st-active-start"
+                    type="radio" /><input
+                    class="sr st st-menu"
+                    id="active-start-menu"
+                    name="st-active-start"
+                    type="radio" /><input
+                    class="sr st st-edit"
+                    id="active-start-edit"
+                    name="st-active-start"
+                    type="radio" /><input
+                    class="sr st st-ask"
+                    id="active-start-ask"
+                    name="st-active-start"
+                    type="radio" /><input
+                    class="sr st st-del"
+                    id="active-start-del"
+                    name="st-active-start"
+                    type="radio" />
+                  <div class="card-h">
+                    <h3>Active Start</h3>
+                    <div class="kebab">
+                      <label
+                        aria-label="Options for Active Start"
+                        class="dots"
+                        for="active-start-menu">⋮</label>
+                      <div class="menu-pop">
+                        <label class="scrimx" for="active-start-none"></label>
+                        <ul>
+                          <li><label for="active-start-edit">Edit</label></li>
+                          <li>
+                            <label class="danger" for="active-start-ask">Delete</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="ptags">
+                      <span class="tag level lvl-beginner">Beginner</span><span class="tag soft freq">3 days / week</span><span class="tag neutral muscles">Legs, Chest, Core</span>
+                    </div>
+                  </div>
+                  <div class="chips tabs">
+                    <input checked="" class="sr vt v1" id="active-start-v1" name="v-active-start" type="radio"/>
+                    <label class="chip" for="active-start-v1">Move A</label>
+                    <input class="sr vt v2" id="active-start-v2" name="v-active-start" type="radio"/>
+                    <label class="chip" for="active-start-v2">Move B</label>
+                  </div>
+                  <div class="rt r1">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Bodyweight Squat</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Incline Push-up</td>
+                          <td>3 × 10</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Glute Bridge</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Plank</td>
+                          <td>3 × 20 sec</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rt r2">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Reverse Lunge</td>
+                          <td>2 × 8</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dead Bug</td>
+                          <td>3 × 8</td>
+                          <td>45 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Bird Dog</td>
+                          <td>2 × 8</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pc-foot">
+                    <a class="btn sm" href="session-active-start.html">Start Workout</a>
+                  </div>
+                  <div class="modal m-edit">
+                    <label class="scrim" for="active-start-none"></label>
+                    <div
+                      aria-label="Edit Active Start"
+                      class="dialog lg"
+                      role="dialog">
+                      <div class="dlg-h">
+                        <h2>Edit Workout Plan</h2>
+                        <label
+                          aria-label="Close"
+                          class="close"
+                          for="active-start-none">✕</label>
+                      </div>
+                      <div class="form">
+                        <div class="field full">
+                          <label for="e-active-start-name">Workout name</label><input
+                            id="e-active-start-name"
+                            placeholder="e.g. Home Chest Day"
+                            type="text"
+                            value="Active Start" />
+                        </div>
+                        <div class="field">
+                          <label for="e-active-start-goal">Fitness goal</label><select id="e-active-start-goal">
+                            <option>Build Muscle</option>
+                            <option>Improve Strength</option>
+                            <option>Improve Overall Fitness</option>
+                            <option selected="">Stay Active and Healthy</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label for="e-active-start-level">Experience level</label><select id="e-active-start-level">
+                            <option selected="">Beginner</option>
+                            <option>Intermediate</option>
+                            <option>Advanced</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label>Workout location</label>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-active-start-loc-home" name="e-active-start-loc" type="radio"/>
+                            <label class="chip" for="e-active-start-loc-home">Home</label>
+                            <input class="sr" id="e-active-start-loc-gym" name="e-active-start-loc" type="radio"/>
+                            <label class="chip" for="e-active-start-loc-gym">Gym</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="e-active-start-freq">Workout frequency</label><select id="e-active-start-freq">
+                            <option>2 days per week</option>
+                            <option selected="">3 days per week</option>
+                            <option>4 days per week</option>
+                            <option>5 days per week</option>
+                            <option>6 days per week</option>
+                          </select>
+                        </div>
+                        <fieldset class="field full">
+                          <legend>Targeted muscle groups</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-active-start-m-chest" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-chest">Chest</label>
+                            <input class="sr" id="e-active-start-m-back" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-back">Back</label>
+                            <input class="sr" id="e-active-start-m-shoulders" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-shoulders">Shoulders</label>
+                            <input class="sr" id="e-active-start-m-arms" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-arms">Arms</label>
+                            <input checked="" class="sr" id="e-active-start-m-legs" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-legs">Legs</label>
+                            <input checked="" class="sr" id="e-active-start-m-core" type="checkbox"/>
+                            <label class="chip" for="e-active-start-m-core">Core</label>
+                          </div>
+                        </fieldset>
+                        <fieldset class="field full">
+                          <legend>Available training days</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-active-start-d-mon" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-mon">Mon</label>
+                            <input class="sr" id="e-active-start-d-tue" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-tue">Tue</label>
+                            <input checked="" class="sr" id="e-active-start-d-wed" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-wed">Wed</label>
+                            <input class="sr" id="e-active-start-d-thu" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-thu">Thu</label>
+                            <input checked="" class="sr" id="e-active-start-d-fri" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-fri">Fri</label>
+                            <input class="sr" id="e-active-start-d-sat" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-sat">Sat</label>
+                            <input class="sr" id="e-active-start-d-sun" type="checkbox"/>
+                            <label class="chip" for="e-active-start-d-sun">Sun</label>
+                          </div>
+                        </fieldset>
+                        <div class="field full">
+                          <label>Exercises</label>
+                          <div class="xlist">
+                            <p class="xgroup">Move A</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x1-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x1-n">Exercise</label><input
+                                  id="e-active-start-x1-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Bodyweight Squat" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x1-s">Sets</label><input
+                                  id="e-active-start-x1-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x1-r">Reps</label><input
+                                  id="e-active-start-x1-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x1-d">Duration</label><input
+                                  id="e-active-start-x1-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x1-t">Rest</label><input
+                                  id="e-active-start-x1-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x1-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x2-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x2-n">Exercise</label><input
+                                  id="e-active-start-x2-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Incline Push-up" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x2-s">Sets</label><input
+                                  id="e-active-start-x2-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x2-r">Reps</label><input
+                                  id="e-active-start-x2-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x2-d">Duration</label><input
+                                  id="e-active-start-x2-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x2-t">Rest</label><input
+                                  id="e-active-start-x2-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x2-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x3-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x3-n">Exercise</label><input
+                                  id="e-active-start-x3-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Glute Bridge" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x3-s">Sets</label><input
+                                  id="e-active-start-x3-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x3-r">Reps</label><input
+                                  id="e-active-start-x3-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x3-d">Duration</label><input
+                                  id="e-active-start-x3-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x3-t">Rest</label><input
+                                  id="e-active-start-x3-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x3-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x4-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x4-n">Exercise</label><input
+                                  id="e-active-start-x4-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Plank" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x4-s">Sets</label><input
+                                  id="e-active-start-x4-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x4-r">Reps</label><input
+                                  id="e-active-start-x4-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x4-d">Duration</label><input
+                                  id="e-active-start-x4-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="20 sec" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x4-t">Rest</label><input
+                                  id="e-active-start-x4-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x4-rm">✕</label>
+                            </div>
+                            <p class="xgroup">Move B</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x5-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x5-n">Exercise</label><input
+                                  id="e-active-start-x5-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Reverse Lunge" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x5-s">Sets</label><input
+                                  id="e-active-start-x5-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="2" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x5-r">Reps</label><input
+                                  id="e-active-start-x5-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x5-d">Duration</label><input
+                                  id="e-active-start-x5-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x5-t">Rest</label><input
+                                  id="e-active-start-x5-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x5-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x6-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x6-n">Exercise</label><input
+                                  id="e-active-start-x6-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dead Bug" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x6-s">Sets</label><input
+                                  id="e-active-start-x6-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x6-r">Reps</label><input
+                                  id="e-active-start-x6-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x6-d">Duration</label><input
+                                  id="e-active-start-x6-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x6-t">Rest</label><input
+                                  id="e-active-start-x6-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x6-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-active-start-x7-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-active-start-x7-n">Exercise</label><input
+                                  id="e-active-start-x7-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Bird Dog" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x7-s">Sets</label><input
+                                  id="e-active-start-x7-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="2" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x7-r">Reps</label><input
+                                  id="e-active-start-x7-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x7-d">Duration</label><input
+                                  id="e-active-start-x7-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-active-start-x7-t">Rest</label><input
+                                  id="e-active-start-x7-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-active-start-x7-rm">✕</label>
+                            </div>
+                            <div class="xa">
+                              <input class="sr" id="e-active-start-a1" type="checkbox"/>
+                              <label class="xlab btn sec sm" for="e-active-start-a1">+ Add exercise</label>
+                              <div class="xnew">
+                                <div class="xrow">
+                                  <input
+                                    class="sr rm"
+                                    id="e-active-start-n1-rm"
+                                    type="checkbox" />
+                                  <div class="xf nm">
+                                    <label for="e-active-start-n1-n">Exercise</label><input
+                                      id="e-active-start-n1-n"
+                                      placeholder="e.g. Push-up"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-active-start-n1-s">Sets</label><input
+                                      id="e-active-start-n1-s"
+                                      placeholder="3"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-active-start-n1-r">Reps</label><input
+                                      id="e-active-start-n1-r"
+                                      placeholder="10"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-active-start-n1-d">Duration</label><input
+                                      id="e-active-start-n1-d"
+                                      placeholder="optional"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-active-start-n1-t">Rest</label><input
+                                      id="e-active-start-n1-t"
+                                      placeholder="60 sec"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <label
+                                    aria-label="Remove exercise"
+                                    class="xdel"
+                                    for="e-active-start-n1-rm">✕</label>
+                                </div>
+                                <div class="xa">
+                                  <input class="sr" id="e-active-start-a2" type="checkbox"/>
+                                  <label class="xlab btn sec sm" for="e-active-start-a2">+ Add exercise</label>
+                                  <div class="xnew">
+                                    <div class="xrow">
+                                      <input
+                                        class="sr rm"
+                                        id="e-active-start-n2-rm"
+                                        type="checkbox" />
+                                      <div class="xf nm">
+                                        <label for="e-active-start-n2-n">Exercise</label><input
+                                          id="e-active-start-n2-n"
+                                          placeholder="e.g. Push-up"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-active-start-n2-s">Sets</label><input
+                                          id="e-active-start-n2-s"
+                                          placeholder="3"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-active-start-n2-r">Reps</label><input
+                                          id="e-active-start-n2-r"
+                                          placeholder="10"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-active-start-n2-d">Duration</label><input
+                                          id="e-active-start-n2-d"
+                                          placeholder="optional"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-active-start-n2-t">Rest</label><input
+                                          id="e-active-start-n2-t"
+                                          placeholder="60 sec"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <label
+                                        aria-label="Remove exercise"
+                                        class="xdel"
+                                        for="e-active-start-n2-rm">✕</label>
+                                    </div>
+                                    <div class="xa">
+                                      <input class="sr" id="e-active-start-a3" type="checkbox"/>
+                                      <label class="xlab btn sec sm" for="e-active-start-a3">+ Add exercise</label>
+                                      <div class="xnew">
+                                        <div class="xrow">
+                                          <input
+                                            class="sr rm"
+                                            id="e-active-start-n3-rm"
+                                            type="checkbox" />
+                                          <div class="xf nm">
+                                            <label for="e-active-start-n3-n">Exercise</label><input
+                                              id="e-active-start-n3-n"
+                                              placeholder="e.g. Push-up"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-active-start-n3-s">Sets</label><input
+                                              id="e-active-start-n3-s"
+                                              placeholder="3"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-active-start-n3-r">Reps</label><input
+                                              id="e-active-start-n3-r"
+                                              placeholder="10"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-active-start-n3-d">Duration</label><input
+                                              id="e-active-start-n3-d"
+                                              placeholder="optional"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-active-start-n3-t">Rest</label><input
+                                              id="e-active-start-n3-t"
+                                              placeholder="60 sec"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <label
+                                            aria-label="Remove exercise"
+                                            class="xdel"
+                                            for="e-active-start-n3-rm">✕</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions full">
+                          <label class="btn" for="active-start-none">Save Workout</label><label class="btn sec" for="active-start-none">Cancel</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal m-ask">
+                    <label class="scrim" for="active-start-none"></label>
+                    <div
+                      aria-label="Delete Active Start"
+                      class="dialog sm"
+                      role="alertdialog">
+                      <h2>Delete workout plan?</h2>
+                      <p class="muted">
+                        Are you sure you want to delete “Active Start”? This
+                        cannot be undone.
+                      </p>
+                      <div class="actions">
+                        <label class="btn sec" for="active-start-none">Cancel</label><label class="btn danger" for="active-start-del">Delete</label>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article
+                  class="card plan-card lv-intermediate g-build g-strength g-fitness w-gym">
+                  <input
+                    checked=""
+                    class="sr st st-none"
+                    id="upper-lower-none"
+                    name="st-upper-lower"
+                    type="radio" /><input
+                    class="sr st st-menu"
+                    id="upper-lower-menu"
+                    name="st-upper-lower"
+                    type="radio" /><input
+                    class="sr st st-edit"
+                    id="upper-lower-edit"
+                    name="st-upper-lower"
+                    type="radio" /><input
+                    class="sr st st-ask"
+                    id="upper-lower-ask"
+                    name="st-upper-lower"
+                    type="radio" /><input
+                    class="sr st st-del"
+                    id="upper-lower-del"
+                    name="st-upper-lower"
+                    type="radio" />
+                  <div class="card-h">
+                    <h3>Upper / Lower Split</h3>
+                    <div class="kebab">
+                      <label
+                        aria-label="Options for Upper / Lower Split"
+                        class="dots"
+                        for="upper-lower-menu">⋮</label>
+                      <div class="menu-pop">
+                        <label class="scrimx" for="upper-lower-none"></label>
+                        <ul>
+                          <li><label for="upper-lower-edit">Edit</label></li>
+                          <li>
+                            <label class="danger" for="upper-lower-ask">Delete</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="ptags">
+                      <span class="tag level lvl-intermediate">Intermediate</span><span class="tag soft freq">4 days / week</span><span class="tag neutral muscles">Chest, Back, Shoulders, Arms, Legs, Core</span>
+                    </div>
+                  </div>
+                  <div class="chips tabs">
+                    <input checked="" class="sr vt v1" id="upper-lower-v1" name="v-upper-lower" type="radio"/>
+                    <label class="chip" for="upper-lower-v1">Upper Body (2 days)</label>
+                    <input class="sr vt v2" id="upper-lower-v2" name="v-upper-lower" type="radio"/>
+                    <label class="chip" for="upper-lower-v2">Lower Body (2 days)</label>
+                  </div>
+                  <div class="rt r1">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Dumbbell Bench Press</td>
+                          <td>4 × 8</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dumbbell Row</td>
+                          <td>4 × 8</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Dumbbell Shoulder Press</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Biceps Curl</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Triceps Pushdown</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rt r2">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Squat</td>
+                          <td>4 × 8</td>
+                          <td>90–120 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Romanian Deadlift</td>
+                          <td>3 × 10</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Reverse Lunge</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Calf Raise</td>
+                          <td>3 × 15</td>
+                          <td>45 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Plank</td>
+                          <td>3 × 45 sec</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pc-foot">
+                    <a class="btn sm" href="session-upper-lower.html">Start Workout</a>
+                  </div>
+                  <div class="modal m-edit">
+                    <label class="scrim" for="upper-lower-none"></label>
+                    <div
+                      aria-label="Edit Upper / Lower Split"
+                      class="dialog lg"
+                      role="dialog">
+                      <div class="dlg-h">
+                        <h2>Edit Workout Plan</h2>
+                        <label
+                          aria-label="Close"
+                          class="close"
+                          for="upper-lower-none">✕</label>
+                      </div>
+                      <div class="form">
+                        <div class="field full">
+                          <label for="e-upper-lower-name">Workout name</label><input
+                            id="e-upper-lower-name"
+                            placeholder="e.g. Home Chest Day"
+                            type="text"
+                            value="Upper / Lower Split" />
+                        </div>
+                        <div class="field">
+                          <label for="e-upper-lower-goal">Fitness goal</label><select id="e-upper-lower-goal">
+                            <option selected="">Build Muscle</option>
+                            <option>Improve Strength</option>
+                            <option>Improve Overall Fitness</option>
+                            <option>Stay Active and Healthy</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label for="e-upper-lower-level">Experience level</label><select id="e-upper-lower-level">
+                            <option>Beginner</option>
+                            <option selected="">Intermediate</option>
+                            <option>Advanced</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label>Workout location</label>
+                          <div class="chips">
+                            <input class="sr" id="e-upper-lower-loc-home" name="e-upper-lower-loc" type="radio"/>
+                            <label class="chip" for="e-upper-lower-loc-home">Home</label>
+                            <input checked="" class="sr" id="e-upper-lower-loc-gym" name="e-upper-lower-loc" type="radio"/>
+                            <label class="chip" for="e-upper-lower-loc-gym">Gym</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="e-upper-lower-freq">Workout frequency</label><select id="e-upper-lower-freq">
+                            <option>2 days per week</option>
+                            <option>3 days per week</option>
+                            <option selected="">4 days per week</option>
+                            <option>5 days per week</option>
+                            <option>6 days per week</option>
+                          </select>
+                        </div>
+                        <fieldset class="field full">
+                          <legend>Targeted muscle groups</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-upper-lower-m-chest" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-chest">Chest</label>
+                            <input checked="" class="sr" id="e-upper-lower-m-back" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-back">Back</label>
+                            <input checked="" class="sr" id="e-upper-lower-m-shoulders" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-shoulders">Shoulders</label>
+                            <input checked="" class="sr" id="e-upper-lower-m-arms" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-arms">Arms</label>
+                            <input checked="" class="sr" id="e-upper-lower-m-legs" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-legs">Legs</label>
+                            <input checked="" class="sr" id="e-upper-lower-m-core" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-m-core">Core</label>
+                          </div>
+                        </fieldset>
+                        <fieldset class="field full">
+                          <legend>Available training days</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-upper-lower-d-mon" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-mon">Mon</label>
+                            <input checked="" class="sr" id="e-upper-lower-d-tue" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-tue">Tue</label>
+                            <input class="sr" id="e-upper-lower-d-wed" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-wed">Wed</label>
+                            <input checked="" class="sr" id="e-upper-lower-d-thu" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-thu">Thu</label>
+                            <input checked="" class="sr" id="e-upper-lower-d-fri" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-fri">Fri</label>
+                            <input class="sr" id="e-upper-lower-d-sat" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-sat">Sat</label>
+                            <input class="sr" id="e-upper-lower-d-sun" type="checkbox"/>
+                            <label class="chip" for="e-upper-lower-d-sun">Sun</label>
+                          </div>
+                        </fieldset>
+                        <div class="field full">
+                          <label>Exercises</label>
+                          <div class="xlist">
+                            <p class="xgroup">Upper Body (2 days)</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x1-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x1-n">Exercise</label><input
+                                  id="e-upper-lower-x1-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dumbbell Bench Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x1-s">Sets</label><input
+                                  id="e-upper-lower-x1-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x1-r">Reps</label><input
+                                  id="e-upper-lower-x1-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x1-d">Duration</label><input
+                                  id="e-upper-lower-x1-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x1-t">Rest</label><input
+                                  id="e-upper-lower-x1-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x1-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x2-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x2-n">Exercise</label><input
+                                  id="e-upper-lower-x2-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dumbbell Row" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x2-s">Sets</label><input
+                                  id="e-upper-lower-x2-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x2-r">Reps</label><input
+                                  id="e-upper-lower-x2-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x2-d">Duration</label><input
+                                  id="e-upper-lower-x2-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x2-t">Rest</label><input
+                                  id="e-upper-lower-x2-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x2-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x3-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x3-n">Exercise</label><input
+                                  id="e-upper-lower-x3-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Dumbbell Shoulder Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x3-s">Sets</label><input
+                                  id="e-upper-lower-x3-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x3-r">Reps</label><input
+                                  id="e-upper-lower-x3-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x3-d">Duration</label><input
+                                  id="e-upper-lower-x3-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x3-t">Rest</label><input
+                                  id="e-upper-lower-x3-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x3-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x4-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x4-n">Exercise</label><input
+                                  id="e-upper-lower-x4-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Biceps Curl" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x4-s">Sets</label><input
+                                  id="e-upper-lower-x4-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x4-r">Reps</label><input
+                                  id="e-upper-lower-x4-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x4-d">Duration</label><input
+                                  id="e-upper-lower-x4-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x4-t">Rest</label><input
+                                  id="e-upper-lower-x4-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x4-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x5-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x5-n">Exercise</label><input
+                                  id="e-upper-lower-x5-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Triceps Pushdown" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x5-s">Sets</label><input
+                                  id="e-upper-lower-x5-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x5-r">Reps</label><input
+                                  id="e-upper-lower-x5-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x5-d">Duration</label><input
+                                  id="e-upper-lower-x5-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x5-t">Rest</label><input
+                                  id="e-upper-lower-x5-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x5-rm">✕</label>
+                            </div>
+                            <p class="xgroup">Lower Body (2 days)</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x6-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x6-n">Exercise</label><input
+                                  id="e-upper-lower-x6-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Squat" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x6-s">Sets</label><input
+                                  id="e-upper-lower-x6-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x6-r">Reps</label><input
+                                  id="e-upper-lower-x6-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x6-d">Duration</label><input
+                                  id="e-upper-lower-x6-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x6-t">Rest</label><input
+                                  id="e-upper-lower-x6-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90–120 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x6-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x7-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x7-n">Exercise</label><input
+                                  id="e-upper-lower-x7-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Romanian Deadlift" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x7-s">Sets</label><input
+                                  id="e-upper-lower-x7-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x7-r">Reps</label><input
+                                  id="e-upper-lower-x7-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x7-d">Duration</label><input
+                                  id="e-upper-lower-x7-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x7-t">Rest</label><input
+                                  id="e-upper-lower-x7-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x7-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x8-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x8-n">Exercise</label><input
+                                  id="e-upper-lower-x8-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Reverse Lunge" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x8-s">Sets</label><input
+                                  id="e-upper-lower-x8-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x8-r">Reps</label><input
+                                  id="e-upper-lower-x8-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x8-d">Duration</label><input
+                                  id="e-upper-lower-x8-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x8-t">Rest</label><input
+                                  id="e-upper-lower-x8-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x8-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x9-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x9-n">Exercise</label><input
+                                  id="e-upper-lower-x9-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Calf Raise" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x9-s">Sets</label><input
+                                  id="e-upper-lower-x9-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x9-r">Reps</label><input
+                                  id="e-upper-lower-x9-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="15" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x9-d">Duration</label><input
+                                  id="e-upper-lower-x9-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x9-t">Rest</label><input
+                                  id="e-upper-lower-x9-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x9-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-upper-lower-x10-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-upper-lower-x10-n">Exercise</label><input
+                                  id="e-upper-lower-x10-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Plank" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x10-s">Sets</label><input
+                                  id="e-upper-lower-x10-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x10-r">Reps</label><input
+                                  id="e-upper-lower-x10-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x10-d">Duration</label><input
+                                  id="e-upper-lower-x10-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-upper-lower-x10-t">Rest</label><input
+                                  id="e-upper-lower-x10-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-upper-lower-x10-rm">✕</label>
+                            </div>
+                            <div class="xa">
+                              <input class="sr" id="e-upper-lower-a1" type="checkbox"/>
+                              <label class="xlab btn sec sm" for="e-upper-lower-a1">+ Add exercise</label>
+                              <div class="xnew">
+                                <div class="xrow">
+                                  <input
+                                    class="sr rm"
+                                    id="e-upper-lower-n1-rm"
+                                    type="checkbox" />
+                                  <div class="xf nm">
+                                    <label for="e-upper-lower-n1-n">Exercise</label><input
+                                      id="e-upper-lower-n1-n"
+                                      placeholder="e.g. Push-up"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-upper-lower-n1-s">Sets</label><input
+                                      id="e-upper-lower-n1-s"
+                                      placeholder="3"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-upper-lower-n1-r">Reps</label><input
+                                      id="e-upper-lower-n1-r"
+                                      placeholder="10"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-upper-lower-n1-d">Duration</label><input
+                                      id="e-upper-lower-n1-d"
+                                      placeholder="optional"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-upper-lower-n1-t">Rest</label><input
+                                      id="e-upper-lower-n1-t"
+                                      placeholder="60 sec"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <label
+                                    aria-label="Remove exercise"
+                                    class="xdel"
+                                    for="e-upper-lower-n1-rm">✕</label>
+                                </div>
+                                <div class="xa">
+                                  <input class="sr" id="e-upper-lower-a2" type="checkbox"/>
+                                  <label class="xlab btn sec sm" for="e-upper-lower-a2">+ Add exercise</label>
+                                  <div class="xnew">
+                                    <div class="xrow">
+                                      <input
+                                        class="sr rm"
+                                        id="e-upper-lower-n2-rm"
+                                        type="checkbox" />
+                                      <div class="xf nm">
+                                        <label for="e-upper-lower-n2-n">Exercise</label><input
+                                          id="e-upper-lower-n2-n"
+                                          placeholder="e.g. Push-up"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-upper-lower-n2-s">Sets</label><input
+                                          id="e-upper-lower-n2-s"
+                                          placeholder="3"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-upper-lower-n2-r">Reps</label><input
+                                          id="e-upper-lower-n2-r"
+                                          placeholder="10"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-upper-lower-n2-d">Duration</label><input
+                                          id="e-upper-lower-n2-d"
+                                          placeholder="optional"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-upper-lower-n2-t">Rest</label><input
+                                          id="e-upper-lower-n2-t"
+                                          placeholder="60 sec"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <label
+                                        aria-label="Remove exercise"
+                                        class="xdel"
+                                        for="e-upper-lower-n2-rm">✕</label>
+                                    </div>
+                                    <div class="xa">
+                                      <input class="sr" id="e-upper-lower-a3" type="checkbox"/>
+                                      <label class="xlab btn sec sm" for="e-upper-lower-a3">+ Add exercise</label>
+                                      <div class="xnew">
+                                        <div class="xrow">
+                                          <input
+                                            class="sr rm"
+                                            id="e-upper-lower-n3-rm"
+                                            type="checkbox" />
+                                          <div class="xf nm">
+                                            <label for="e-upper-lower-n3-n">Exercise</label><input
+                                              id="e-upper-lower-n3-n"
+                                              placeholder="e.g. Push-up"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-upper-lower-n3-s">Sets</label><input
+                                              id="e-upper-lower-n3-s"
+                                              placeholder="3"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-upper-lower-n3-r">Reps</label><input
+                                              id="e-upper-lower-n3-r"
+                                              placeholder="10"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-upper-lower-n3-d">Duration</label><input
+                                              id="e-upper-lower-n3-d"
+                                              placeholder="optional"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-upper-lower-n3-t">Rest</label><input
+                                              id="e-upper-lower-n3-t"
+                                              placeholder="60 sec"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <label
+                                            aria-label="Remove exercise"
+                                            class="xdel"
+                                            for="e-upper-lower-n3-rm">✕</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions full">
+                          <label class="btn" for="upper-lower-none">Save Workout</label><label class="btn sec" for="upper-lower-none">Cancel</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal m-ask">
+                    <label class="scrim" for="upper-lower-none"></label>
+                    <div
+                      aria-label="Delete Upper / Lower Split"
+                      class="dialog sm"
+                      role="alertdialog">
+                      <h2>Delete workout plan?</h2>
+                      <p class="muted">
+                        Are you sure you want to delete “Upper / Lower Split”?
+                        This cannot be undone.
+                      </p>
+                      <div class="actions">
+                        <label class="btn sec" for="upper-lower-none">Cancel</label><label class="btn danger" for="upper-lower-del">Delete</label>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article
+                  class="card plan-card lv-advanced g-build g-strength w-gym">
+                  <input
+                    checked=""
+                    class="sr st st-none"
+                    id="ppl-none"
+                    name="st-ppl"
+                    type="radio" /><input
+                    class="sr st st-menu"
+                    id="ppl-menu"
+                    name="st-ppl"
+                    type="radio" /><input
+                    class="sr st st-edit"
+                    id="ppl-edit"
+                    name="st-ppl"
+                    type="radio" /><input
+                    class="sr st st-ask"
+                    id="ppl-ask"
+                    name="st-ppl"
+                    type="radio" /><input
+                    class="sr st st-del"
+                    id="ppl-del"
+                    name="st-ppl"
+                    type="radio" />
+                  <div class="card-h">
+                    <h3>Push Pull Legs</h3>
+                    <div class="kebab">
+                      <label
+                        aria-label="Options for Push Pull Legs"
+                        class="dots"
+                        for="ppl-menu">⋮</label>
+                      <div class="menu-pop">
+                        <label class="scrimx" for="ppl-none"></label>
+                        <ul>
+                          <li><label for="ppl-edit">Edit</label></li>
+                          <li>
+                            <label class="danger" for="ppl-ask">Delete</label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="ptags">
+                      <span class="tag level lvl-advanced">Advanced</span><span class="tag soft freq">5 days / week</span><span class="tag neutral muscles">Chest, Back, Shoulders, Arms, Legs</span>
+                    </div>
+                  </div>
+                  <div class="chips tabs">
+                    <input checked="" class="sr vt v1" id="ppl-v1" name="v-ppl" type="radio"/>
+                    <label class="chip" for="ppl-v1">Push</label>
+                    <input class="sr vt v2" id="ppl-v2" name="v-ppl" type="radio"/>
+                    <label class="chip" for="ppl-v2">Pull</label>
+                    <input class="sr vt v3" id="ppl-v3" name="v-ppl" type="radio"/>
+                    <label class="chip" for="ppl-v3">Legs</label>
+                  </div>
+                  <div class="rt r1">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Bench Press</td>
+                          <td>4 × 8</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Shoulder Press</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Lateral Raise</td>
+                          <td>3 × 15</td>
+                          <td>45 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Triceps Pushdown</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rt r2">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Barbell Row</td>
+                          <td>4 × 8</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Lat Pulldown</td>
+                          <td>3 × 10</td>
+                          <td>60–90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Biceps Curl</td>
+                          <td>3 × 12</td>
+                          <td>60 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="rt r3">
+                    <table class="tbl">
+                      <thead>
+                        <tr><th scope="col">Exercise</th><th scope="col">Sets × reps</th><th scope="col">Rest</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Squat</td>
+                          <td>4 × 8</td>
+                          <td>120 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Romanian Deadlift</td>
+                          <td>3 × 10</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Leg Press</td>
+                          <td>3 × 12</td>
+                          <td>90 sec</td>
+                        </tr>
+                        <tr>
+                          <td>Calf Raise</td>
+                          <td>4 × 15</td>
+                          <td>45 sec</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="pc-foot">
+                    <a class="btn sm" href="session-ppl.html">Start Workout</a>
+                  </div>
+                  <div class="modal m-edit">
+                    <label class="scrim" for="ppl-none"></label>
+                    <div
+                      aria-label="Edit Push Pull Legs"
+                      class="dialog lg"
+                      role="dialog">
+                      <div class="dlg-h">
+                        <h2>Edit Workout Plan</h2>
+                        <label aria-label="Close" class="close" for="ppl-none">✕</label>
+                      </div>
+                      <div class="form">
+                        <div class="field full">
+                          <label for="e-ppl-name">Workout name</label><input
+                            id="e-ppl-name"
+                            placeholder="e.g. Home Chest Day"
+                            type="text"
+                            value="Push Pull Legs" />
+                        </div>
+                        <div class="field">
+                          <label for="e-ppl-goal">Fitness goal</label><select id="e-ppl-goal">
+                            <option selected="">Build Muscle</option>
+                            <option>Improve Strength</option>
+                            <option>Improve Overall Fitness</option>
+                            <option>Stay Active and Healthy</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label for="e-ppl-level">Experience level</label><select id="e-ppl-level">
+                            <option>Beginner</option>
+                            <option>Intermediate</option>
+                            <option selected="">Advanced</option>
+                          </select>
+                        </div>
+                        <div class="field">
+                          <label>Workout location</label>
+                          <div class="chips">
+                            <input class="sr" id="e-ppl-loc-home" name="e-ppl-loc" type="radio"/>
+                            <label class="chip" for="e-ppl-loc-home">Home</label>
+                            <input checked="" class="sr" id="e-ppl-loc-gym" name="e-ppl-loc" type="radio"/>
+                            <label class="chip" for="e-ppl-loc-gym">Gym</label>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="e-ppl-freq">Workout frequency</label><select id="e-ppl-freq">
+                            <option>2 days per week</option>
+                            <option>3 days per week</option>
+                            <option>4 days per week</option>
+                            <option selected="">5 days per week</option>
+                            <option>6 days per week</option>
+                          </select>
+                        </div>
+                        <fieldset class="field full">
+                          <legend>Targeted muscle groups</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-ppl-m-chest" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-chest">Chest</label>
+                            <input checked="" class="sr" id="e-ppl-m-back" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-back">Back</label>
+                            <input checked="" class="sr" id="e-ppl-m-shoulders" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-shoulders">Shoulders</label>
+                            <input checked="" class="sr" id="e-ppl-m-arms" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-arms">Arms</label>
+                            <input checked="" class="sr" id="e-ppl-m-legs" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-legs">Legs</label>
+                            <input class="sr" id="e-ppl-m-core" type="checkbox"/>
+                            <label class="chip" for="e-ppl-m-core">Core</label>
+                          </div>
+                        </fieldset>
+                        <fieldset class="field full">
+                          <legend>Available training days</legend>
+                          <div class="chips">
+                            <input checked="" class="sr" id="e-ppl-d-mon" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-mon">Mon</label>
+                            <input checked="" class="sr" id="e-ppl-d-tue" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-tue">Tue</label>
+                            <input checked="" class="sr" id="e-ppl-d-wed" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-wed">Wed</label>
+                            <input checked="" class="sr" id="e-ppl-d-thu" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-thu">Thu</label>
+                            <input checked="" class="sr" id="e-ppl-d-fri" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-fri">Fri</label>
+                            <input class="sr" id="e-ppl-d-sat" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-sat">Sat</label>
+                            <input class="sr" id="e-ppl-d-sun" type="checkbox"/>
+                            <label class="chip" for="e-ppl-d-sun">Sun</label>
+                          </div>
+                        </fieldset>
+                        <div class="field full">
+                          <label>Exercises</label>
+                          <div class="xlist">
+                            <p class="xgroup">Push</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x1-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x1-n">Exercise</label><input
+                                  id="e-ppl-x1-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Bench Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x1-s">Sets</label><input
+                                  id="e-ppl-x1-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x1-r">Reps</label><input
+                                  id="e-ppl-x1-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x1-d">Duration</label><input
+                                  id="e-ppl-x1-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x1-t">Rest</label><input
+                                  id="e-ppl-x1-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x1-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x2-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x2-n">Exercise</label><input
+                                  id="e-ppl-x2-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Shoulder Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x2-s">Sets</label><input
+                                  id="e-ppl-x2-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x2-r">Reps</label><input
+                                  id="e-ppl-x2-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x2-d">Duration</label><input
+                                  id="e-ppl-x2-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x2-t">Rest</label><input
+                                  id="e-ppl-x2-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x2-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x3-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x3-n">Exercise</label><input
+                                  id="e-ppl-x3-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Lateral Raise" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x3-s">Sets</label><input
+                                  id="e-ppl-x3-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x3-r">Reps</label><input
+                                  id="e-ppl-x3-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="15" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x3-d">Duration</label><input
+                                  id="e-ppl-x3-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x3-t">Rest</label><input
+                                  id="e-ppl-x3-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x3-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x4-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x4-n">Exercise</label><input
+                                  id="e-ppl-x4-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Triceps Pushdown" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x4-s">Sets</label><input
+                                  id="e-ppl-x4-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x4-r">Reps</label><input
+                                  id="e-ppl-x4-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x4-d">Duration</label><input
+                                  id="e-ppl-x4-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x4-t">Rest</label><input
+                                  id="e-ppl-x4-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x4-rm">✕</label>
+                            </div>
+                            <p class="xgroup">Pull</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x5-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x5-n">Exercise</label><input
+                                  id="e-ppl-x5-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Barbell Row" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x5-s">Sets</label><input
+                                  id="e-ppl-x5-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x5-r">Reps</label><input
+                                  id="e-ppl-x5-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x5-d">Duration</label><input
+                                  id="e-ppl-x5-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x5-t">Rest</label><input
+                                  id="e-ppl-x5-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x5-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x6-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x6-n">Exercise</label><input
+                                  id="e-ppl-x6-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Lat Pulldown" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x6-s">Sets</label><input
+                                  id="e-ppl-x6-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x6-r">Reps</label><input
+                                  id="e-ppl-x6-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x6-d">Duration</label><input
+                                  id="e-ppl-x6-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x6-t">Rest</label><input
+                                  id="e-ppl-x6-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60–90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x6-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x7-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x7-n">Exercise</label><input
+                                  id="e-ppl-x7-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Biceps Curl" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x7-s">Sets</label><input
+                                  id="e-ppl-x7-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x7-r">Reps</label><input
+                                  id="e-ppl-x7-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x7-d">Duration</label><input
+                                  id="e-ppl-x7-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x7-t">Rest</label><input
+                                  id="e-ppl-x7-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="60 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x7-rm">✕</label>
+                            </div>
+                            <p class="xgroup">Legs</p>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x8-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x8-n">Exercise</label><input
+                                  id="e-ppl-x8-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Squat" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x8-s">Sets</label><input
+                                  id="e-ppl-x8-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x8-r">Reps</label><input
+                                  id="e-ppl-x8-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="8" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x8-d">Duration</label><input
+                                  id="e-ppl-x8-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x8-t">Rest</label><input
+                                  id="e-ppl-x8-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="120 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x8-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x9-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x9-n">Exercise</label><input
+                                  id="e-ppl-x9-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Romanian Deadlift" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x9-s">Sets</label><input
+                                  id="e-ppl-x9-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x9-r">Reps</label><input
+                                  id="e-ppl-x9-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="10" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x9-d">Duration</label><input
+                                  id="e-ppl-x9-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x9-t">Rest</label><input
+                                  id="e-ppl-x9-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x9-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x10-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x10-n">Exercise</label><input
+                                  id="e-ppl-x10-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Leg Press" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x10-s">Sets</label><input
+                                  id="e-ppl-x10-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="3" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x10-r">Reps</label><input
+                                  id="e-ppl-x10-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="12" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x10-d">Duration</label><input
+                                  id="e-ppl-x10-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x10-t">Rest</label><input
+                                  id="e-ppl-x10-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="90 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x10-rm">✕</label>
+                            </div>
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="e-ppl-x11-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="e-ppl-x11-n">Exercise</label><input
+                                  id="e-ppl-x11-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="Calf Raise" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x11-s">Sets</label><input
+                                  id="e-ppl-x11-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="4" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x11-r">Reps</label><input
+                                  id="e-ppl-x11-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="15" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x11-d">Duration</label><input
+                                  id="e-ppl-x11-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="e-ppl-x11-t">Rest</label><input
+                                  id="e-ppl-x11-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="45 sec" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="e-ppl-x11-rm">✕</label>
+                            </div>
+                            <div class="xa">
+                              <input class="sr" id="e-ppl-a1" type="checkbox"/>
+                              <label class="xlab btn sec sm" for="e-ppl-a1">+ Add exercise</label>
+                              <div class="xnew">
+                                <div class="xrow">
+                                  <input
+                                    class="sr rm"
+                                    id="e-ppl-n1-rm"
+                                    type="checkbox" />
+                                  <div class="xf nm">
+                                    <label for="e-ppl-n1-n">Exercise</label><input
+                                      id="e-ppl-n1-n"
+                                      placeholder="e.g. Push-up"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-ppl-n1-s">Sets</label><input
+                                      id="e-ppl-n1-s"
+                                      placeholder="3"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-ppl-n1-r">Reps</label><input
+                                      id="e-ppl-n1-r"
+                                      placeholder="10"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-ppl-n1-d">Duration</label><input
+                                      id="e-ppl-n1-d"
+                                      placeholder="optional"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="e-ppl-n1-t">Rest</label><input
+                                      id="e-ppl-n1-t"
+                                      placeholder="60 sec"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <label
+                                    aria-label="Remove exercise"
+                                    class="xdel"
+                                    for="e-ppl-n1-rm">✕</label>
+                                </div>
+                                <div class="xa">
+                                  <input class="sr" id="e-ppl-a2" type="checkbox"/>
+                                  <label class="xlab btn sec sm" for="e-ppl-a2">+ Add exercise</label>
+                                  <div class="xnew">
+                                    <div class="xrow">
+                                      <input
+                                        class="sr rm"
+                                        id="e-ppl-n2-rm"
+                                        type="checkbox" />
+                                      <div class="xf nm">
+                                        <label for="e-ppl-n2-n">Exercise</label><input
+                                          id="e-ppl-n2-n"
+                                          placeholder="e.g. Push-up"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-ppl-n2-s">Sets</label><input
+                                          id="e-ppl-n2-s"
+                                          placeholder="3"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-ppl-n2-r">Reps</label><input
+                                          id="e-ppl-n2-r"
+                                          placeholder="10"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-ppl-n2-d">Duration</label><input
+                                          id="e-ppl-n2-d"
+                                          placeholder="optional"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <div class="xf">
+                                        <label for="e-ppl-n2-t">Rest</label><input
+                                          id="e-ppl-n2-t"
+                                          placeholder="60 sec"
+                                          type="text"
+                                          value="" />
+                                      </div>
+                                      <label
+                                        aria-label="Remove exercise"
+                                        class="xdel"
+                                        for="e-ppl-n2-rm">✕</label>
+                                    </div>
+                                    <div class="xa">
+                                      <input class="sr" id="e-ppl-a3" type="checkbox"/>
+                                      <label class="xlab btn sec sm" for="e-ppl-a3">+ Add exercise</label>
+                                      <div class="xnew">
+                                        <div class="xrow">
+                                          <input
+                                            class="sr rm"
+                                            id="e-ppl-n3-rm"
+                                            type="checkbox" />
+                                          <div class="xf nm">
+                                            <label for="e-ppl-n3-n">Exercise</label><input
+                                              id="e-ppl-n3-n"
+                                              placeholder="e.g. Push-up"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-ppl-n3-s">Sets</label><input
+                                              id="e-ppl-n3-s"
+                                              placeholder="3"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-ppl-n3-r">Reps</label><input
+                                              id="e-ppl-n3-r"
+                                              placeholder="10"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-ppl-n3-d">Duration</label><input
+                                              id="e-ppl-n3-d"
+                                              placeholder="optional"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <div class="xf">
+                                            <label for="e-ppl-n3-t">Rest</label><input
+                                              id="e-ppl-n3-t"
+                                              placeholder="60 sec"
+                                              type="text"
+                                              value="" />
+                                          </div>
+                                          <label
+                                            aria-label="Remove exercise"
+                                            class="xdel"
+                                            for="e-ppl-n3-rm">✕</label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="actions full">
+                          <label class="btn" for="ppl-none">Save Workout</label><label class="btn sec" for="ppl-none">Cancel</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal m-ask">
+                    <label class="scrim" for="ppl-none"></label>
+                    <div
+                      aria-label="Delete Push Pull Legs"
+                      class="dialog sm"
+                      role="alertdialog">
+                      <h2>Delete workout plan?</h2>
+                      <p class="muted">
+                        Are you sure you want to delete “Push Pull Legs”? This
+                        cannot be undone.
+                      </p>
+                      <div class="actions">
+                        <label class="btn sec" for="ppl-none">Cancel</label><label class="btn danger" for="ppl-del">Delete</label>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              <p class="muted small plan-count"></p>
+            </section>
+          </section>
+          <div class="modal" id="add-plan">
+            <a aria-label="Close" class="scrim" href="#plans"></a>
+            <div
+              aria-label="Add workout plan"
+              aria-modal="true"
+              class="dialog lg"
+              role="dialog">
+              <div class="dlg-h">
+                <h2>Add Workout Plan</h2>
+                <a aria-label="Close" class="close" href="#plans">✕</a>
+              </div>
+              <div class="form">
+                <div class="field full">
+                  <label for="add-name">Workout name</label><input
+                    id="add-name"
+                    placeholder="e.g. Home Chest Day"
+                    type="text"
+                    value="" />
+                </div>
+                <div class="field">
+                  <label for="add-goal">Fitness goal</label><select id="add-goal">
+                    <option selected="">Build Muscle</option>
+                    <option>Improve Strength</option>
+                    <option>Improve Overall Fitness</option>
+                    <option>Stay Active and Healthy</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="add-level">Experience level</label><select id="add-level">
+                    <option selected="">Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Workout location</label>
+                  <div class="chips">
+                    <input checked="" class="sr" id="add-loc-home" name="add-loc" type="radio"/>
+                    <label class="chip" for="add-loc-home">Home</label>
+                    <input class="sr" id="add-loc-gym" name="add-loc" type="radio"/>
+                    <label class="chip" for="add-loc-gym">Gym</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="add-freq">Workout frequency</label><select id="add-freq">
+                    <option>2 days per week</option>
+                    <option selected="">3 days per week</option>
+                    <option>4 days per week</option>
+                    <option>5 days per week</option>
+                    <option>6 days per week</option>
+                  </select>
+                </div>
+                <fieldset class="field full">
+                  <legend>Targeted muscle groups</legend>
+                  <div class="chips">
+                    <input class="sr" id="add-m-chest" type="checkbox"/>
+                    <label class="chip" for="add-m-chest">Chest</label>
+                    <input class="sr" id="add-m-back" type="checkbox"/>
+                    <label class="chip" for="add-m-back">Back</label>
+                    <input class="sr" id="add-m-shoulders" type="checkbox"/>
+                    <label class="chip" for="add-m-shoulders">Shoulders</label>
+                    <input class="sr" id="add-m-arms" type="checkbox"/>
+                    <label class="chip" for="add-m-arms">Arms</label>
+                    <input class="sr" id="add-m-legs" type="checkbox"/>
+                    <label class="chip" for="add-m-legs">Legs</label>
+                    <input class="sr" id="add-m-core" type="checkbox"/>
+                    <label class="chip" for="add-m-core">Core</label>
+                  </div>
+                </fieldset>
+                <fieldset class="field full">
+                  <legend>Available training days</legend>
+                  <div class="chips">
+                    <input class="sr" id="add-d-mon" type="checkbox"/>
+                    <label class="chip" for="add-d-mon">Mon</label>
+                    <input class="sr" id="add-d-tue" type="checkbox"/>
+                    <label class="chip" for="add-d-tue">Tue</label>
+                    <input class="sr" id="add-d-wed" type="checkbox"/>
+                    <label class="chip" for="add-d-wed">Wed</label>
+                    <input class="sr" id="add-d-thu" type="checkbox"/>
+                    <label class="chip" for="add-d-thu">Thu</label>
+                    <input class="sr" id="add-d-fri" type="checkbox"/>
+                    <label class="chip" for="add-d-fri">Fri</label>
+                    <input class="sr" id="add-d-sat" type="checkbox"/>
+                    <label class="chip" for="add-d-sat">Sat</label>
+                    <input class="sr" id="add-d-sun" type="checkbox"/>
+                    <label class="chip" for="add-d-sun">Sun</label>
+                  </div>
+                </fieldset>
+                <div class="field full">
+                  <label>Exercises</label>
+                  <div class="xlist">
+                    <div class="xrow">
+                      <input class="sr rm" id="add-x1-rm" type="checkbox" />
+                      <div class="xf nm">
+                        <label for="add-x1-n">Exercise</label><input
+                          id="add-x1-n"
+                          placeholder="e.g. Push-up"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x1-s">Sets</label><input
+                          id="add-x1-s"
+                          placeholder="3"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x1-r">Reps</label><input
+                          id="add-x1-r"
+                          placeholder="10"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x1-d">Duration</label><input
+                          id="add-x1-d"
+                          placeholder="optional"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x1-t">Rest</label><input
+                          id="add-x1-t"
+                          placeholder="60 sec"
+                          type="text"
+                          value="" />
+                      </div>
+                      <label
+                        aria-label="Remove exercise"
+                        class="xdel"
+                        for="add-x1-rm">✕</label>
+                    </div>
+                    <div class="xrow">
+                      <input class="sr rm" id="add-x2-rm" type="checkbox" />
+                      <div class="xf nm">
+                        <label for="add-x2-n">Exercise</label><input
+                          id="add-x2-n"
+                          placeholder="e.g. Push-up"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x2-s">Sets</label><input
+                          id="add-x2-s"
+                          placeholder="3"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x2-r">Reps</label><input
+                          id="add-x2-r"
+                          placeholder="10"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x2-d">Duration</label><input
+                          id="add-x2-d"
+                          placeholder="optional"
+                          type="text"
+                          value="" />
+                      </div>
+                      <div class="xf">
+                        <label for="add-x2-t">Rest</label><input
+                          id="add-x2-t"
+                          placeholder="60 sec"
+                          type="text"
+                          value="" />
+                      </div>
+                      <label
+                        aria-label="Remove exercise"
+                        class="xdel"
+                        for="add-x2-rm">✕</label>
+                    </div>
+                    <div class="xa">
+                      <input class="sr" id="add-a1" type="checkbox"/>
+                      <label class="xlab btn sec sm" for="add-a1">+ Add exercise</label>
+                      <div class="xnew">
+                        <div class="xrow">
+                          <input
+                            class="sr rm"
+                            id="add-n1-rm"
+                            type="checkbox" />
+                          <div class="xf nm">
+                            <label for="add-n1-n">Exercise</label><input
+                              id="add-n1-n"
+                              placeholder="e.g. Push-up"
+                              type="text"
+                              value="" />
+                          </div>
+                          <div class="xf">
+                            <label for="add-n1-s">Sets</label><input
+                              id="add-n1-s"
+                              placeholder="3"
+                              type="text"
+                              value="" />
+                          </div>
+                          <div class="xf">
+                            <label for="add-n1-r">Reps</label><input
+                              id="add-n1-r"
+                              placeholder="10"
+                              type="text"
+                              value="" />
+                          </div>
+                          <div class="xf">
+                            <label for="add-n1-d">Duration</label><input
+                              id="add-n1-d"
+                              placeholder="optional"
+                              type="text"
+                              value="" />
+                          </div>
+                          <div class="xf">
+                            <label for="add-n1-t">Rest</label><input
+                              id="add-n1-t"
+                              placeholder="60 sec"
+                              type="text"
+                              value="" />
+                          </div>
+                          <label
+                            aria-label="Remove exercise"
+                            class="xdel"
+                            for="add-n1-rm">✕</label>
+                        </div>
+                        <div class="xa">
+                          <input class="sr" id="add-a2" type="checkbox"/>
+                          <label class="xlab btn sec sm" for="add-a2">+ Add exercise</label>
+                          <div class="xnew">
+                            <div class="xrow">
+                              <input
+                                class="sr rm"
+                                id="add-n2-rm"
+                                type="checkbox" />
+                              <div class="xf nm">
+                                <label for="add-n2-n">Exercise</label><input
+                                  id="add-n2-n"
+                                  placeholder="e.g. Push-up"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="add-n2-s">Sets</label><input
+                                  id="add-n2-s"
+                                  placeholder="3"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="add-n2-r">Reps</label><input
+                                  id="add-n2-r"
+                                  placeholder="10"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="add-n2-d">Duration</label><input
+                                  id="add-n2-d"
+                                  placeholder="optional"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <div class="xf">
+                                <label for="add-n2-t">Rest</label><input
+                                  id="add-n2-t"
+                                  placeholder="60 sec"
+                                  type="text"
+                                  value="" />
+                              </div>
+                              <label
+                                aria-label="Remove exercise"
+                                class="xdel"
+                                for="add-n2-rm">✕</label>
+                            </div>
+                            <div class="xa">
+                              <input class="sr" id="add-a3" type="checkbox"/>
+                              <label class="xlab btn sec sm" for="add-a3">+ Add exercise</label>
+                              <div class="xnew">
+                                <div class="xrow">
+                                  <input
+                                    class="sr rm"
+                                    id="add-n3-rm"
+                                    type="checkbox" />
+                                  <div class="xf nm">
+                                    <label for="add-n3-n">Exercise</label><input
+                                      id="add-n3-n"
+                                      placeholder="e.g. Push-up"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="add-n3-s">Sets</label><input
+                                      id="add-n3-s"
+                                      placeholder="3"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="add-n3-r">Reps</label><input
+                                      id="add-n3-r"
+                                      placeholder="10"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="add-n3-d">Duration</label><input
+                                      id="add-n3-d"
+                                      placeholder="optional"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <div class="xf">
+                                    <label for="add-n3-t">Rest</label><input
+                                      id="add-n3-t"
+                                      placeholder="60 sec"
+                                      type="text"
+                                      value="" />
+                                  </div>
+                                  <label
+                                    aria-label="Remove exercise"
+                                    class="xdel"
+                                    for="add-n3-rm">✕</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="actions full">
+                  <button class="btn" id="save-custom-plan" type="button">
+                    Save Workout</button><a class="btn sec" href="#plans">Cancel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

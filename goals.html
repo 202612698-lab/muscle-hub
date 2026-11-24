@@ -1,0 +1,386 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Goals – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/goals.js" defer></script>
+    <script src="js/charts.js" defer></script>
+    <script src="js/selects.js" defer></script>
+  </head>
+  <body data-page="goals">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a class="me" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a aria-current="page" class="on" href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <header class="page-head head-row">
+          <div>
+            <h1>My Fitness Goals</h1>
+            <p>Set a personal training target and record your progress.</p>
+          </div>
+          <a class="btn" href="#goal-form">+ Add Goal</a>
+        </header>
+        <section class="card" id="goals">
+          <ul class="goals gcards" id="user-goals"></ul>
+          <div class="empty-state goals-empty" id="goals-empty">
+            <span class="es-ico"><svg aria-hidden="true" viewbox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <circle cx="12" cy="12" r="1"></circle></svg></span>
+            <h3>Set your first fitness goal</h3>
+            <p class="muted">
+              Goals give your training a clear target. Track reps, hold times,
+              weekly consistency, or finishing a plan, and watch your progress
+              build.
+            </p>
+            <ul class="es-points">
+              <li>Pick a measurable target</li>
+              <li>Set a realistic date</li>
+              <li>Update it as you improve</li>
+            </ul>
+            <div class="actions">
+              <a class="btn" href="#goal-form">Create Your First Goal</a><a class="btn sec" href="#goal-templates">Browse templates</a>
+            </div>
+          </div>
+          <div class="sec-title" id="goal-templates">
+            <h3 class="sub-h">Suggested goal templates</h3>
+            <p class="muted small">
+              Start from a template and adjust the details to suit you.
+            </p>
+          </div>
+          <div class="tpl-grid">
+            <article class="card tpl-card">
+              <span class="tpl-ico"><svg aria-hidden="true" viewbox="0 0 24 24">
+                  <rect height="16" rx="2" width="18" x="3" y="5"></rect>
+                  <path d="M8 3v4M16 3v4M3 10h18M8 15l3 3 5-5"></path></svg></span>
+              <h3>Beginner Consistency</h3>
+              <p class="muted">
+                Train 3 days a week for 4 weeks to build the habit.
+              </p>
+              <dl class="tpl-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Consistency goal</dd>
+                </div>
+                <div>
+                  <dt>Target</dt>
+                  <dd>3 workouts / week</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>4 weeks</dd>
+                </div>
+              </dl>
+              <a class="btn sec sm" href="#goal-tpl-1">Use Template</a>
+            </article>
+            <article class="card tpl-card">
+              <span class="tpl-ico"><svg aria-hidden="true" viewbox="0 0 24 24">
+                  <path d="M4 12a8 8 0 0114-5.3M20 12a8 8 0 01-14 5.3"></path>
+                  <path d="M18 3v4h-4M6 21v-4h4"></path></svg></span>
+              <h3>Push-up Practice</h3>
+              <p class="muted">Build up to 10 clean push-ups per set.</p>
+              <dl class="tpl-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Repetition goal</dd>
+                </div>
+                <div>
+                  <dt>Target</dt>
+                  <dd>10 reps</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>6 weeks</dd>
+                </div>
+              </dl>
+              <a class="btn sec sm" href="#goal-tpl-2">Use Template</a>
+            </article>
+            <article class="card tpl-card">
+              <span class="tpl-ico"><svg aria-hidden="true" viewbox="0 0 24 24">
+                  <circle cx="12" cy="13" r="8"></circle>
+                  <path d="M12 9v4l3 2M10 2h4"></path></svg></span>
+              <h3>Core Stability</h3>
+              <p class="muted">
+                Hold a plank for 30 seconds, then add 5 seconds a week.
+              </p>
+              <dl class="tpl-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Duration goal</dd>
+                </div>
+                <div>
+                  <dt>Target</dt>
+                  <dd>30 sec</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>4 weeks</dd>
+                </div>
+              </dl>
+              <a class="btn sec sm" href="#goal-tpl-3">Use Template</a>
+            </article>
+            <article class="card tpl-card">
+              <span class="tpl-ico"><svg aria-hidden="true" viewbox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <circle cx="12" cy="12" r="1"></circle></svg></span>
+              <h3>Weekly Workout Target</h3>
+              <p class="muted">
+                Complete your planned workouts every week this month.
+              </p>
+              <dl class="tpl-meta">
+                <div>
+                  <dt>Type</dt>
+                  <dd>Workout completion goal</dd>
+                </div>
+                <div>
+                  <dt>Target</dt>
+                  <dd>5 workouts / week</dd>
+                </div>
+                <div>
+                  <dt>Duration</dt>
+                  <dd>4 weeks</dd>
+                </div>
+              </dl>
+              <a class="btn sec sm" href="#goal-tpl-4">Use Template</a>
+            </article>
+          </div>
+        </section>
+
+        <div class="modal" id="goal-form">
+          <a aria-label="Close" class="scrim" href="#goals"></a>
+          <div aria-label="Add or edit a goal" class="dialog" role="dialog">
+            <div class="dlg-h">
+              <h2>Add Goal</h2>
+              <a aria-label="Close form" class="close" href="#goals">✕</a>
+            </div>
+            <form class="form">
+              <div class="field full">
+                <label for="g-title">Goal name</label><input
+                  id="g-title" name="title"
+                  placeholder="e.g. 10 push-ups per set"
+                  type="text" />
+              </div>
+              <div class="field">
+                <label for="g-type">Goal type</label><select id="g-type" name="type">
+                  <option>Repetition goal</option>
+                  <option>Duration goal</option>
+                  <option>Consistency goal</option>
+                  <option>Workout completion goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="g-target">Target</label><input
+                  id="g-target" name="target"
+                  placeholder="e.g. 10 reps" aria-describedby="goal-target-help"
+                  type="text" />
+                <p class="muted small" id="goal-target-help">Start with a number, then add a unit if needed.</p>
+              </div>
+              <div class="field full">
+                <label for="g-current">Current progress</label>
+                <input id="g-current" name="current" type="number" min="0" step="any" value="0" />
+                <p class="muted small">Use the same unit as your target.</p>
+              </div>
+              <div class="field full">
+                <label for="g-date">Target date</label><input id="g-date" name="date" type="date" />
+              </div>
+
+              <div class="actions full">
+                <button class="btn" type="submit">Save Goal</button><a class="btn sec" href="#goals">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="goal-tpl-1">
+          <a aria-label="Close" class="scrim" href="#goals"></a>
+          <div aria-label="Add or edit a goal" class="dialog" role="dialog">
+            <div class="dlg-h">
+              <h2>Beginner Consistency</h2>
+              <a aria-label="Close form" class="close" href="#goals">✕</a>
+            </div>
+            <form class="form">
+              <div class="field full">
+                <label for="g-title-1">Goal name</label><input
+                  id="g-title-1" name="title"
+                  placeholder="e.g. 10 push-ups per set"
+                  type="text"
+                  value="Beginner Consistency" />
+              </div>
+              <div class="field">
+                <label for="g-type-1">Goal type</label><select id="g-type-1" name="type">
+                  <option>Repetition goal</option>
+                  <option>Duration goal</option>
+                  <option selected="">Consistency goal</option>
+                  <option>Workout completion goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="g-target-1">Target</label><input
+                  id="g-target-1" name="target"
+                  placeholder="e.g. 10 reps"
+                  type="text"
+                  value="3 workouts / week" />
+              </div>
+              <div class="field full">
+                <label for="g-date-1">Target date</label><input id="g-date-1" name="date" type="date" />
+                <p class="muted small">Suggested duration: 4 weeks.</p>
+              </div>
+
+              <div class="actions full">
+                <button class="btn" type="submit">Save Goal</button><a class="btn sec" href="#goals">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="goal-tpl-2">
+          <a aria-label="Close" class="scrim" href="#goals"></a>
+          <div aria-label="Add or edit a goal" class="dialog" role="dialog">
+            <div class="dlg-h">
+              <h2>Push-up Practice</h2>
+              <a aria-label="Close form" class="close" href="#goals">✕</a>
+            </div>
+            <form class="form">
+              <div class="field full">
+                <label for="g-title-2">Goal name</label><input
+                  id="g-title-2" name="title"
+                  placeholder="e.g. 10 push-ups per set"
+                  type="text"
+                  value="Push-up Practice" />
+              </div>
+              <div class="field">
+                <label for="g-type-2">Goal type</label><select id="g-type-2" name="type">
+                  <option selected="">Repetition goal</option>
+                  <option>Duration goal</option>
+                  <option>Consistency goal</option>
+                  <option>Workout completion goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="g-target-2">Target</label><input
+                  id="g-target-2" name="target"
+                  placeholder="e.g. 10 reps"
+                  type="text"
+                  value="10 reps" />
+              </div>
+              <div class="field full">
+                <label for="g-date-2">Target date</label><input id="g-date-2" name="date" type="date" />
+                <p class="muted small">Suggested duration: 6 weeks.</p>
+              </div>
+
+              <div class="actions full">
+                <button class="btn" type="submit">Save Goal</button><a class="btn sec" href="#goals">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="goal-tpl-3">
+          <a aria-label="Close" class="scrim" href="#goals"></a>
+          <div aria-label="Add or edit a goal" class="dialog" role="dialog">
+            <div class="dlg-h">
+              <h2>Core Stability</h2>
+              <a aria-label="Close form" class="close" href="#goals">✕</a>
+            </div>
+            <form class="form">
+              <div class="field full">
+                <label for="g-title-3">Goal name</label><input
+                  id="g-title-3" name="title"
+                  placeholder="e.g. 10 push-ups per set"
+                  type="text"
+                  value="Core Stability" />
+              </div>
+              <div class="field">
+                <label for="g-type-3">Goal type</label><select id="g-type-3" name="type">
+                  <option>Repetition goal</option>
+                  <option selected="">Duration goal</option>
+                  <option>Consistency goal</option>
+                  <option>Workout completion goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="g-target-3">Target</label><input
+                  id="g-target-3" name="target"
+                  placeholder="e.g. 10 reps"
+                  type="text"
+                  value="30 sec" />
+              </div>
+              <div class="field full">
+                <label for="g-date-3">Target date</label><input id="g-date-3" name="date" type="date" />
+                <p class="muted small">Suggested duration: 4 weeks.</p>
+              </div>
+
+              <div class="actions full">
+                <button class="btn" type="submit">Save Goal</button><a class="btn sec" href="#goals">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="modal" id="goal-tpl-4">
+          <a aria-label="Close" class="scrim" href="#goals"></a>
+          <div aria-label="Add or edit a goal" class="dialog" role="dialog">
+            <div class="dlg-h">
+              <h2>Weekly Workout Target</h2>
+              <a aria-label="Close form" class="close" href="#goals">✕</a>
+            </div>
+            <form class="form">
+              <div class="field full">
+                <label for="g-title-4">Goal name</label><input
+                  id="g-title-4" name="title"
+                  placeholder="e.g. 10 push-ups per set"
+                  type="text"
+                  value="Weekly Workout Target" />
+              </div>
+              <div class="field">
+                <label for="g-type-4">Goal type</label><select id="g-type-4" name="type">
+                  <option>Repetition goal</option>
+                  <option>Duration goal</option>
+                  <option>Consistency goal</option>
+                  <option selected="">Workout completion goal</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="g-target-4">Target</label><input
+                  id="g-target-4" name="target"
+                  placeholder="e.g. 10 reps"
+                  type="text"
+                  value="5 workouts / week" />
+              </div>
+              <div class="field full">
+                <label for="g-date-4">Target date</label><input id="g-date-4" name="date" type="date" />
+                <p class="muted small">Suggested duration: 4 weeks.</p>
+              </div>
+
+              <div class="actions full">
+                <button class="btn" type="submit">Save Goal</button><a class="btn sec" href="#goals">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,351 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Profile – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/selects.js" defer></script>
+  </head>
+  <body data-page="profile">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a aria-current="page" class="me on" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <header class="page-head">
+          <h1>Profile</h1>
+          <p>
+            Manage your personal details, training preferences, and account
+            settings.
+          </p>
+        </header>
+        <form class="profile-layout" id="profile-form" method="post">
+          <aside class="card profile-overview" aria-label="Profile overview">
+            <div class="ov-avatar av" id="ov-avatar">A</div>
+            <div class="ov-photo-actions">
+              <input
+                accept="image/png,image/jpeg,image/webp"
+                class="sr"
+                id="ov-file"
+                type="file" /><label class="btn sec sm" for="ov-file"><span class="up-new">Upload photo</span><span class="up-change">Change photo</span></label><button
+                class="btn ghost sm ov-remove"
+                type="button" hidden>
+                Remove
+              </button>
+            </div>
+            <p class="muted small ov-hint">
+              <span class="up-new">JPG, PNG or WebP, square works best.</span><span class="up-change">New photo selected.</span>
+            </p>
+            <h2 id="ov-name">Alex</h2>
+            <p class="muted small" id="member-since">Member since June 2026</p>
+            <span class="tag level lvl-beginner" data-preference="level">Beginner</span>
+            <p class="ov-bio muted">
+              Add a short bio to tell others about your training.
+            </p>
+            <dl class="ov-facts">
+              <div>
+                <dt>Goal</dt>
+                <dd data-preference="goal">Build Muscle</dd>
+              </div>
+              <div>
+                <dt>Schedule</dt>
+                <dd data-preference="schedule">5 Days per Week</dd>
+              </div>
+              <div>
+                <dt>Location</dt>
+                <dd data-preference="location">At Home</dd>
+              </div>
+            </dl>
+          </aside>
+          <div class="profile-sections">
+            <section class="card" id="personal" aria-labelledby="h-personal">
+              <div class="sec-head">
+                <h2 id="h-personal">Personal Information</h2>
+                <p class="muted small">How you appear in Muscle Hub.</p>
+              </div>
+              <div class="form">
+                <div class="field">
+                  <label for="ep-name">Display name <span class="req">*</span></label><input
+                    autocomplete="nickname"
+                    id="ep-name"
+                    maxlength="40"
+                    minlength="2"
+                    name="name"
+                    required
+                    type="text"
+                    value="Alex" />
+                  <p class="err">Enter a display name of 2–40 characters.</p>
+                </div>
+                <div class="field">
+                  <label for="pf-email">Email</label><input
+                    autocomplete="email"
+                    id="pf-email"
+                    name="email"
+                    readonly
+                    placeholder="you@example.com"
+                    type="email" />
+                  <p class="err">Enter a valid email address.</p>
+                </div>
+                <div class="field full">
+                  <label for="pf-bio">Short fitness bio</label><textarea
+                    id="pf-bio"
+                    maxlength="160"
+                    name="bio"
+                    placeholder="e.g. Training 4x a week to get stronger and feel better."
+                    rows="3"
+                  ></textarea>
+                  <p class="muted small hint">Up to 160 characters.</p>
+                </div>
+                <div class="field-row full">
+                  <div class="field">
+                    <label for="pf-age">Age <span class="opt">(optional)</span></label><input
+                      id="pf-age"
+                      inputmode="numeric"
+                      max="100"
+                      min="13"
+                      name="age"
+                      step="1"
+                      type="number" />
+                    <p class="err">Enter a whole number from 13 to 100.</p>
+                  </div>
+                  <div class="field">
+                    <label for="pf-height-cm">Height <span class="opt">(optional)</span></label>
+                    <div class="input-unit u-metric">
+                      <input
+                        id="pf-height-cm"
+                        inputmode="decimal"
+                        max="250"
+                        min="100"
+                        name="height_cm"
+                        step="0.1"
+                        type="number" /><span>cm</span>
+                    </div>
+                    <div class="input-unit u-imperial">
+                      <input
+                        aria-label="Height in inches"
+                        id="pf-height-in"
+                        inputmode="decimal"
+                        max="98"
+                        min="39"
+                        name="height_in"
+                        step="0.1"
+                        type="number" /><span>in</span>
+                    </div>
+                    <p class="err">Enter a realistic height.</p>
+                  </div>
+                  <div class="field">
+                    <label for="pf-weight-kg">Weight <span class="opt">(optional)</span></label>
+                    <div class="input-unit u-metric">
+                      <input
+                        id="pf-weight-kg"
+                        inputmode="decimal"
+                        max="300"
+                        min="30"
+                        name="weight_kg"
+                        step="0.1"
+                        type="number" /><span>kg</span>
+                    </div>
+                    <div class="input-unit u-imperial">
+                      <input
+                        aria-label="Weight in pounds"
+                        id="pf-weight-lb"
+                        inputmode="decimal"
+                        max="660"
+                        min="66"
+                        name="weight_lb"
+                        step="0.1"
+                        type="number" /><span>lbs</span>
+                    </div>
+                    <p class="err">Enter a realistic weight.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="card" id="fitness" aria-labelledby="h-fitness">
+              <div class="sec-head">
+                <h2 id="h-fitness">Fitness Preferences</h2>
+                <p class="muted small">
+                  Used to recommend plans, schedule workouts, and filter
+                  exercises.
+                </p>
+              </div>
+              <div class="form">
+                <div class="field">
+                  <label for="ep-goal">Primary fitness goal</label><select id="ep-goal" name="goal">
+                    <option selected>Build Muscle</option>
+                    <option>Improve Strength</option>
+                    <option>Improve Overall Fitness</option>
+                    <option>Stay Active and Healthy</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="ep-level">Experience level</label><select id="ep-level" name="level">
+                    <option selected>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="ep-loc">Preferred workout location</label><select id="ep-loc" name="location">
+                    <option selected>At Home</option>
+                    <option>At the Gym</option>
+                    <option>Both</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="ep-sched">Weekly workout frequency</label><select id="ep-sched" name="schedule">
+                    <option>2–3 Days per Week</option>
+                    <option>4 Days per Week</option>
+                    <option selected>5 Days per Week</option>
+                    <option>Flexible Schedule</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pf-duration">Preferred workout duration</label><select id="pf-duration" name="duration">
+                    <option>30 minutes</option>
+                    <option selected>45 minutes</option>
+                    <option>60 minutes</option>
+                    <option>75 minutes</option>
+                    <option>90 minutes</option>
+                  </select>
+                </div>
+                <fieldset class="field full days-field">
+                  <legend>Preferred training days</legend>
+                  <div class="chips">
+                    <input class="sr" type="checkbox" name="days" id="days-0" value="Mon" checked/>
+                    <label class="chip" for="days-0">Mon</label>
+                    <input class="sr" type="checkbox" name="days" id="days-1" value="Tue" checked/>
+                    <label class="chip" for="days-1">Tue</label>
+                    <input class="sr" type="checkbox" name="days" id="days-2" value="Wed"/>
+                    <label class="chip" for="days-2">Wed</label>
+                    <input class="sr" type="checkbox" name="days" id="days-3" value="Thu" checked/>
+                    <label class="chip" for="days-3">Thu</label>
+                    <input class="sr" type="checkbox" name="days" id="days-4" value="Fri" checked/>
+                    <label class="chip" for="days-4">Fri</label>
+                    <input class="sr" type="checkbox" name="days" id="days-5" value="Sat" checked/>
+                    <label class="chip" for="days-5">Sat</label>
+                    <input class="sr" type="checkbox" name="days" id="days-6" value="Sun"/>
+                    <label class="chip" for="days-6">Sun</label>
+                  </div>
+                  <p class="err">Choose at least one training day.</p>
+                </fieldset>
+                <fieldset class="field full">
+                  <legend>Available equipment</legend>
+                  <div class="chips">
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-0" value="Bodyweight" checked/>
+                    <label class="chip" for="equipment-0">Bodyweight</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-1" value="Dumbbells" checked/>
+                    <label class="chip" for="equipment-1">Dumbbells</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-2" value="Barbell"/>
+                    <label class="chip" for="equipment-2">Barbell</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-3" value="Bench"/>
+                    <label class="chip" for="equipment-3">Bench</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-4" value="Cable machine"/>
+                    <label class="chip" for="equipment-4">Cable machine</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-5" value="Kettlebell"/>
+                    <label class="chip" for="equipment-5">Kettlebell</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-6" value="Resistance bands"/>
+                    <label class="chip" for="equipment-6">Resistance bands</label>
+                    <input class="sr" type="checkbox" name="equipment" id="equipment-7" value="Pull-up bar"/>
+                    <label class="chip" for="equipment-7">Pull-up bar</label>
+                  </div>
+                </fieldset>
+              </div>
+            </section>
+            <section class="card" id="account" aria-labelledby="h-account">
+              <div class="sec-head">
+                <h2 id="h-account">Account &amp; Preferences</h2>
+                <p class="muted small">Units, notifications, and sign-in.</p>
+              </div>
+              <div class="pref-list">
+                <div class="pref">
+                  <div>
+                    <b>Measurement units</b>
+                    <p class="muted small">
+                      Used for body weight and lifting loads.
+                    </p>
+                  </div>
+                  <div
+                    class="seg"
+                    role="radiogroup"
+                    aria-label="Measurement units">
+                    <input checked class="sr" id="u-kg" name="units" type="radio" value="kg"/>
+                    <label for="u-kg">kg</label>
+                    <input class="sr" id="u-lbs" name="units" type="radio" value="lbs"/>
+                    <label for="u-lbs">lbs</label>
+                  </div>
+                </div>
+                <label class="pref"><div>
+                    <b>Workout reminders</b>
+                    <p class="muted small">
+                      A nudge on your scheduled training days.
+                    </p>
+                  </div>
+                  <input
+                    checked
+                    class="switch"
+                    name="n_reminders"
+                    type="checkbox" /></label>
+                <label class="pref"><div>
+                    <b>Weekly progress summary</b>
+                    <p class="muted small">
+                      A recap of workouts and streaks each week.
+                    </p>
+                  </div>
+                  <input
+                    checked
+                    class="switch"
+                    name="n_summary"
+                    type="checkbox" /></label>
+                <label class="pref"><div>
+                    <b>Goal milestones</b>
+                    <p class="muted small">
+                      Celebrate when you hit a goal target.
+                    </p>
+                  </div>
+                  <input class="switch" name="n_milestones" type="checkbox" /></label>
+                <div class="pref">
+                  <div>
+                    <b>Sign out</b>
+                    <p class="muted small">End your session on this device.</p>
+                  </div>
+                  <a class="btn sec sm" href="index.html" data-logout>Log out</a>
+                </div>
+              </div>
+            </section>
+          </div>
+          <div class="save-bar" hidden>
+            <span class="muted small">Review your changes, then save.</span>
+            <div class="actions">
+              <button class="btn sec" type="reset">Discard changes</button><button class="btn" type="submit">Save Changes</button>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

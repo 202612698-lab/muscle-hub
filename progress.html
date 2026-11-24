@@ -1,0 +1,942 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport" />
+    <title>Progress – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/app.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+    <script src="js/goals.js" defer></script>
+    <script src="js/charts.js" defer></script>
+  </head>
+  <body data-page="progress">
+    <div class="shell">
+      <aside class="side">
+        <a class="brand" href="dashboard.html"><img src="images/musclehub-logo.svg" alt="" width="256" height="178" /><span>MUSCLE <b>HUB</b></span></a>
+        <a class="me" href="profile.html"><span class="av" aria-hidden="true">A</span><span class="me-details"><span class="me-name">Alex</span><small class="me-level" hidden></small></span></a>
+        <nav class="menu">
+          <a href="dashboard.html" aria-label="Dashboard"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <rect height="7" rx="1.5" width="7" x="3" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="3"></rect>
+              <rect height="7" rx="1.5" width="7" x="3" y="14"></rect>
+              <rect height="7" rx="1.5" width="7" x="14" y="14"></rect></svg><span class="nav-label">Dashboard</span></a><a href="workout-plans.html" aria-label="Workout Plans"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"></path></svg><span class="nav-label">Workout Plans</span></a><a href="exercise-library.html" aria-label="Exercise Library"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 5a2 2 0 012-2h13v16H6a2 2 0 00-2 2z"></path>
+              <path d="M4 19V5"></path></svg><span class="nav-label">Exercise Library</span></a><a href="goals.html" aria-label="Goals"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="5"></circle>
+              <circle cx="12" cy="12" r="1"></circle></svg><span class="nav-label">Goals</span></a>
+          <a aria-current="page" class="on" href="progress.html" aria-label="Progress"><svg aria-hidden="true" viewbox="0 0 24 24">
+              <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><span class="nav-label">Progress</span></a>
+        </nav>
+        <a class="out" href="index.html"><svg aria-hidden="true" viewbox="0 0 24 24">
+            <path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"></path></svg>Logout</a>
+      </aside>
+      <main class="main">
+        <header class="page-head">
+          <h1>Progress</h1>
+          <p>Review your completed workouts, activity, and goals.</p>
+        </header>
+        <section class="stats" id="prog-stats" aria-label="Workout statistics">
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <rect height="16" rx="2" width="18" x="3" y="5"></rect>
+                <path d="M8 3v4M16 3v4M3 10h18M8 15l3 3 5-5"></path></svg></span>
+            <div>
+              <small>Workouts this week</small><b>0 / 5</b><em>5 to reach your goal</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="12" cy="13" r="8"></circle>
+                <path d="M12 9v4l3 2M10 2h4"></path></svg></span>
+            <div>
+              <small>Avg workout time</small><b>48 min</b><em>↑ +4% vs last week</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <path
+                  d="M12 22c4 0 7-3 7-7 0-3-2-5-3-7-1 2-2 3-3 3 0-3-1-6-4-8 0 4-4 6-4 12 0 4 3 7 7 7z"></path></svg></span>
+            <div>
+              <small>Week streak</small><b>20 weeks</b><em>Consecutive weeks</em>
+            </div>
+          </div>
+          <div class="stat">
+            <span class="ico"><svg aria-hidden="true" viewBox="0 0 24 24">
+                <path
+                  d="M8 21h8M12 17v4M7 4h10v5a5 5 0 01-10 0zM17 5h3v2a3 3 0 01-3 3M7 5H4v2a3 3 0 003 3"></path></svg></span>
+            <div><small>Total workouts</small><b>77</b><em>All time</em></div>
+          </div>
+        </section>
+        <div class="grid-2">
+          <div class="card" id="prog-week">
+            <div class="card-h">
+              <div>
+                <h2>Weekly Activity</h2>
+                <p class="muted small">Workouts per day this week</p>
+              </div>
+            </div>
+            <div
+              class="bars"
+              role="img"
+              aria-label="Workouts per day this week">
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Mon</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Tue</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Wed</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Thu</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Fri</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Sat</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:2%" class="zero"></i></div>
+                <strong>0</strong><span>Sun</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" id="prog-month">
+            <div class="card-h">
+              <div>
+                <h2>Monthly Progress</h2>
+                <p class="muted small">Workouts per month, last 6 months</p>
+              </div>
+            </div>
+            <div class="bars" role="img" aria-label="Workouts per month">
+              <div class="b">
+                <div class="track"><i style="height:50%"></i></div>
+                <strong>9</strong><span>Jun</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <i style="height:38.88888888888889%"></i>
+                </div>
+                <strong>7</strong><span>Jul</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:100%"></i></div>
+                <strong>18</strong><span>Aug</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <i style="height:66.66666666666666%"></i>
+                </div>
+                <strong>12</strong><span>Sep</span>
+              </div>
+              <div class="b">
+                <div class="track"><i style="height:100%"></i></div>
+                <strong>18</strong><span>Oct</span>
+              </div>
+              <div class="b">
+                <div class="track">
+                  <i style="height:72.22222222222221%"></i>
+                </div>
+                <strong>13</strong><span>Nov</span>
+              </div>
+            </div>
+          </div>
+          <div class="card" id="prog-duration">
+            <div class="card-h">
+              <div>
+                <h2>Average Duration</h2>
+                <p class="muted small">Minutes per workout, last 8 weeks</p>
+              </div>
+            </div>
+            <svg
+              class="line-chart"
+              viewBox="0 0 600 200"
+              role="img"
+              aria-label="Average workout duration per week">
+              <defs>
+                <linearGradient id="lg-area" x1="0" x2="0" y1="0" y2="1">
+                  <stop
+                    offset="0"
+                    stop-color="#3DFF1A"
+                    stop-opacity=".28"></stop>
+                  <stop offset="1" stop-color="#3DFF1A" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+              <line x1="36" x2="588" y1="172" y2="172" class="g"></line>
+              <text x="28" y="176" class="ax" text-anchor="end">35</text>
+              <line x1="36" x2="588" y1="94" y2="94" class="g"></line>
+              <text x="28" y="98" class="ax" text-anchor="end">45</text>
+              <line x1="36" x2="588" y1="16" y2="16" class="g"></line>
+              <text x="28" y="20" class="ax" text-anchor="end">55</text>
+              <path
+                d="M36.0 109.6 L114.9 86.2 L193.7 78.4 L272.6 86.2 L351.4 94.0 L430.3 70.6 L509.1 55.0 L509.1 172 L36.0 172 Z"
+                fill="url(#lg-area)"></path>
+              <path
+                d="M36.0 109.6 L114.9 86.2 L193.7 78.4 L272.6 86.2 L351.4 94.0 L430.3 70.6 L509.1 55.0"
+                class="ln"></path>
+              <circle cx="36" cy="109.6" r="4">
+                <title>Oct 5: 43 min</title>
+              </circle>
+              <circle cx="114.85714285714286" cy="86.19999999999999" r="4">
+                <title>Oct 12: 46 min</title>
+              </circle>
+              <circle cx="193.71428571428572" cy="78.4" r="4">
+                <title>Oct 19: 47 min</title>
+              </circle>
+              <circle cx="272.57142857142856" cy="86.19999999999999" r="4">
+                <title>Oct 26: 46 min</title>
+              </circle>
+              <circle cx="351.42857142857144" cy="94" r="4">
+                <title>Nov 2: 45 min</title>
+              </circle>
+              <circle cx="430.2857142857143" cy="70.6" r="4">
+                <title>Nov 9: 48 min</title>
+              </circle>
+              <circle cx="509.14285714285717" cy="55" r="4">
+                <title>Nov 16: 50 min</title>
+              </circle>
+              <text x="36" y="192" class="ax" text-anchor="middle">Oct 5</text>
+              <text
+                x="114.85714285714286"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Oct 12
+              </text>
+              <text
+                x="193.71428571428572"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Oct 19
+              </text>
+              <text
+                x="272.57142857142856"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Oct 26
+              </text>
+              <text
+                x="351.42857142857144"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Nov 2
+              </text>
+              <text
+                x="430.2857142857143"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Nov 9
+              </text>
+              <text
+                x="509.14285714285717"
+                y="192"
+                class="ax"
+                text-anchor="middle">
+                Nov 16
+              </text>
+              <text x="588" y="192" class="ax" text-anchor="middle">Now</text>
+            </svg>
+          </div>
+          <div class="card" id="prog-goals">
+            <div class="card-h">
+              <div>
+                <h2>Goal Progress</h2>
+                <p class="muted small">
+                  Example goals. Add your own in My Fitness Goals.
+                </p>
+              </div>
+              <a class="more" href="goals.html">View all goals →</a>
+            </div>
+            <ul class="goals">
+              <li>
+                <div class="g-top">
+                  <strong>10 push-ups per set</strong><span class="tag soft">Active</span>
+                </div>
+                <p class="muted">Repetition goal · Push-up · Nov 1 – Dec 15</p>
+                <div class="pbar"><i style="width:80%"></i></div>
+                <p class="g-val"><span>8 of 10 reps</span><span>80%</span></p>
+              </li>
+              <li>
+                <div class="g-top">
+                  <strong>Hold a plank for 30 seconds</strong><span class="tag soft">Active</span>
+                </div>
+                <p class="muted">Duration goal · Plank · Nov 1 – Dec 31</p>
+                <div class="pbar"><i style="width:67%"></i></div>
+                <p class="g-val"><span>20 of 30 sec</span><span>67%</span></p>
+              </li>
+              <li>
+                <div class="g-top">
+                  <strong>Complete 5 workouts per week</strong><span class="tag soft">Active</span>
+                </div>
+                <p class="muted">Consistency goal · Ongoing</p>
+                <div class="pbar"><i style="width:80%"></i></div>
+                <p class="g-val">
+                  <span>4 of 5 this week</span><span>80%</span>
+                </p>
+              </li>
+              <li>
+                <div class="g-top">
+                  <strong>Finish Full Body Strength</strong><span class="tag soft">Active</span>
+                </div>
+                <p class="muted">Workout completion goal · Nov 1 – Dec 20</p>
+                <div class="pbar"><i style="width:75%"></i></div>
+                <p class="g-val">
+                  <span>9 of 12 sessions</span><span>75%</span>
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="card span-2" id="history">
+            <div class="card-h">
+              <div>
+                <h2>Workout History</h2>
+                <p class="muted small">77 workouts logged</p>
+              </div>
+            </div>
+            <ul class="hist">
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Sat, Nov 21</span><span class="muted">48 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Fri, Nov 20</span><span class="muted">54 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Thu, Nov 19</span><span class="muted">49 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Tue, Nov 17</span><span class="muted">50 min · 12/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Sat, Nov 14</span><span class="muted">55 min · 12/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Fri, Nov 13</span><span class="muted">44 min · 12/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Thu, Nov 12</span><span class="muted">45 min · 11/12 sets</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                </div>
+                <div class="right">
+                  <span>Tue, Nov 10</span><span class="muted">52 min · 12/12 sets</span>
+                </div>
+              </li>
+            </ul>
+            <details class="more-hist">
+              <summary class="btn sec sm">Show all workouts</summary>
+              <ul class="hist">
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Mon, Nov 9</span><span class="muted">46 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Nov 7</span><span class="muted">42 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Nov 6</span><span class="muted">43 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Nov 5</span><span class="muted">47 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Nov 3</span><span class="muted">49 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Oct 31</span><span class="muted">52 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Oct 30</span><span class="muted">43 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Oct 27</span><span class="muted">43 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Oct 24</span><span class="muted">42 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Oct 23</span><span class="muted">49 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Oct 22</span><span class="muted">51 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Oct 20</span><span class="muted">47 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Mon, Oct 19</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Oct 17</span><span class="muted">46 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Oct 16</span><span class="muted">55 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Oct 15</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Oct 13</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Mon, Oct 12</span><span class="muted">43 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Oct 10</span><span class="muted">41 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Oct 8</span><span class="muted">42 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Oct 6</span><span class="muted">45 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Oct 3</span><span class="muted">41 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Oct 1</span><span class="muted">50 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Sep 29</span><span class="muted">48 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Sep 26</span><span class="muted">50 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Sep 25</span><span class="muted">40 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Sep 22</span><span class="muted">47 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Sep 18</span><span class="muted">49 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Sep 17</span><span class="muted">43 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Sep 15</span><span class="muted">51 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Sep 12</span><span class="muted">49 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Wed, Sep 9</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Sep 8</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Sep 5</span><span class="muted">47 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Wed, Sep 2</span><span class="muted">48 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Mon, Aug 31</span><span class="muted">50 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Aug 29</span><span class="muted">44 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Aug 28</span><span class="muted">51 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Aug 27</span><span class="muted">53 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Aug 25</span><span class="muted">51 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Aug 22</span><span class="muted">45 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Aug 21</span><span class="muted">46 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Aug 20</span><span class="muted">51 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Aug 18</span><span class="muted">46 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Aug 15</span><span class="muted">46 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Aug 14</span><span class="muted">50 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Aug 13</span><span class="muted">52 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Mon, Aug 10</span><span class="muted">46 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Aug 8</span><span class="muted">51 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Aug 7</span><span class="muted">48 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Aug 6</span><span class="muted">50 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Aug 4</span><span class="muted">42 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Aug 1</span><span class="muted">46 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Jul 31</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Jul 30</span><span class="muted">49 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Jul 24</span><span class="muted">49 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Jul 18</span><span class="muted">45 min · 10/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Jul 10</span><span class="muted">44 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Jul 9</span><span class="muted">42 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Jul 7</span><span class="muted">45 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Jun 25</span><span class="muted">39 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Jun 23</span><span class="muted">46 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Jun 20</span><span class="muted">42 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Fri, Jun 19</span><span class="muted">45 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Jun 18</span><span class="muted">37 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Tue, Jun 16</span><span class="muted">48 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Jun 13</span><span class="muted">37 min · 11/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body B</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Sat, Jun 6</span><span class="muted">45 min · 12/12 sets</span>
+                  </div>
+                </li>
+                <li>
+                  <div>
+                    <strong>Full Body A</strong><span class="muted">Full Body Strength</span>
+                  </div>
+                  <div class="right">
+                    <span>Thu, Jun 4</span><span class="muted">39 min · 12/12 sets</span>
+                  </div>
+                </li>
+              </ul>
+            </details>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

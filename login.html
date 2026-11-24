@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport" />
+    <title>Log in – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/auth.js" defer></script>
+  </head>
+  <body class="auth" data-page="login">
+    <form class="auth-card" method="post">
+      <a class="logo" href="index.html"><img src="images/musclehub-logo.svg" alt="Muscle Hub" width="256" height="178" /></a>
+      <h1>Log in</h1>
+      <p>Welcome back to Muscle Hub.</p>
+      <label>Email<input
+          name="email"
+          autocomplete="email"
+          placeholder="you@example.com"
+          required=""
+          type="email" /></label><label>Password<input
+          name="password"
+          autocomplete="current-password"
+          placeholder="Your password"
+          required=""
+          type="password" /></label>
+      <button class="btn" type="submit" disabled>Log in</button>
+      <p class="alt">New to Muscle Hub? <a href="signup.html">Sign up</a></p>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+      name="viewport" />
+    <title>Welcome – Muscle Hub</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&amp;family=Inter:wght@400;500&amp;display=swap"
+      rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <script src="js/auth.js"></script>
+  </head>
+  <body class="auth" data-page="setup">
+    <div class="wiz">
+      <a class="logo" href="index.html"><img src="images/musclehub-logo.svg" alt="Muscle Hub" width="256" height="178" /></a>
+      <section class="wstep" id="s1">
+        <p class="wiz-count">Step 1 of 5</p>
+        <div class="wiz-bar"><i style="width:20%"></i></div>
+        <h1>Let’s build your fitness journey.</h1>
+        <p>
+          Before we begin, let’s get to know your fitness goals. We’ll help you
+          find the right direction.
+        </p>
+        <div class="pills">
+          <span>Workout plans</span><span>Exercise guides</span><span>Progress tracking</span>
+        </div>
+        <div class="wiz-nav">
+          <span></span><a class="btn next" href="#s2">Get Started</a>
+        </div>
+      </section>
+      <section class="wstep gate" id="s2">
+        <p class="wiz-count">Step 2 of 5</p>
+        <div class="wiz-bar"><i style="width:40%"></i></div>
+        <h1>What’s your main fitness goal?</h1>
+        <p>Choose the one that matters most right now.</p>
+        <div class="opts" role="radiogroup">
+          <label class="opt"><input id="goal-build" name="goal" type="radio" /><span
+              class="dot"></span><span><b>Build Muscle</b><small>Add size and shape with focused training.</small></span></label><label class="opt"><input id="goal-strength" name="goal" type="radio" /><span
+              class="dot"></span><span><b>Improve Strength</b><small>Lift heavier and get stronger over time.</small></span></label><label class="opt"><input id="goal-fitness" name="goal" type="radio" /><span
+              class="dot"></span><span><b>Improve Overall Fitness</b><small>Build a balanced, capable body.</small></span></label><label class="opt"><input id="goal-active" name="goal" type="radio" /><span
+              class="dot"></span><span><b>Stay Active and Healthy</b><small>Keep moving and build a steady habit.</small></span></label>
+        </div>
+        <p class="hint">Choose an option to continue.</p>
+        <div class="wiz-nav">
+          <a class="btn alt" href="#s1">Previous</a><a class="btn next" href="#s3">Continue</a>
+        </div>
+      </section>
+      <section class="wstep gate" id="s3">
+        <p class="wiz-count">Step 3 of 5</p>
+        <div class="wiz-bar"><i style="width:60%"></i></div>
+        <h1>What’s your experience level?</h1>
+        <p>Be honest. There is no wrong answer, and you can change it later.</p>
+        <div class="opts" role="radiogroup">
+          <label class="opt"><input id="level-beginner" name="level" type="radio" /><span
+              class="dot"></span><span><b>Beginner</b><small>New to training, or coming back after a long break.</small></span></label><label class="opt"><input id="level-intermediate" name="level" type="radio" /><span
+              class="dot"></span><span><b>Intermediate</b><small>Training regularly for several months and comfortable with the
+                basics.</small></span></label><label class="opt"><input id="level-advanced" name="level" type="radio" /><span
+              class="dot"></span><span><b>Advanced</b><small>Training consistently for a year or more with solid
+                technique.</small></span></label>
+        </div>
+        <p class="hint">Choose an option to continue.</p>
+        <div class="wiz-nav">
+          <a class="btn alt" href="#s2">Previous</a><a class="btn next" href="#s4">Continue</a>
+        </div>
+      </section>
+      <section class="wstep gate" id="s4">
+        <p class="wiz-count">Step 4 of 5</p>
+        <div class="wiz-bar"><i style="width:80%"></i></div>
+        <h1>Where do you prefer to work out?</h1>
+        <p>We will match exercises to your equipment.</p>
+        <div class="opts" role="radiogroup">
+          <label class="opt"><input id="loc-home" name="loc" type="radio" /><span
+              class="dot"></span><span><b>At Home</b><small>Bodyweight and dumbbell workouts.</small></span></label><label class="opt"><input id="loc-gym" name="loc" type="radio" /><span
+              class="dot"></span><span><b>At the Gym</b><small>Machines, barbells, and cables.</small></span></label><label class="opt"><input id="loc-both" name="loc" type="radio" /><span
+              class="dot"></span><span><b>Both</b><small>A mix of home and gym sessions.</small></span></label>
+        </div>
+        <p class="hint">Choose an option to continue.</p>
+        <div class="wiz-nav">
+          <a class="btn alt" href="#s3">Previous</a><a class="btn next" href="#s5">Continue</a>
+        </div>
+      </section>
+      <section class="wstep gate" id="s5">
+        <p class="wiz-count">Step 5 of 5</p>
+        <div class="wiz-bar"><i style="width:100%"></i></div>
+        <h1>Set your workout schedule</h1>
+        <p>How often would you like to train?</p>
+        <div class="opts two" role="radiogroup">
+          <label class="opt"><input id="sched-23" name="sched" type="radio" /><span
+              class="dot"></span><span><b>2–3 Days per Week</b><small>A steady, manageable start.</small></span></label><label class="opt"><input id="sched-4" name="sched" type="radio" /><span
+              class="dot"></span><span><b>4 Days per Week</b><small>Balanced progress with rest days.</small></span></label><label class="opt"><input id="sched-5" name="sched" type="radio" /><span
+              class="dot"></span><span><b>5 Days per Week</b><small>For people with a regular routine.</small></span></label><label class="opt"><input id="sched-flex" name="sched" type="radio" /><span
+              class="dot"></span><span><b>Flexible Schedule</b><small>Train when your week allows.</small></span></label>
+        </div>
+        <p class="hint">Choose an option to continue.</p>
+        <div class="wiz-nav">
+          <a class="btn alt" href="#s4">Previous</a><a class="btn next" href="#s6">Finish</a>
+        </div>
+      </section>
+      <section class="wstep" id="s6">
+        <p class="wiz-count">All set</p>
+        <div class="wiz-bar"><i style="width:100%"></i></div>
+        <h1>You’re ready to begin!</h1>
+        <p>
+          Your fitness journey starts here. You can change these anytime from
+          your profile.
+        </p>
+        <dl class="summary">
+          <div>
+            <dt>Fitness goal</dt>
+            <dd class="sum-goal"></dd>
+          </div>
+          <div>
+            <dt>Experience level</dt>
+            <dd class="sum-level"></dd>
+          </div>
+          <div>
+            <dt>Workout location</dt>
+            <dd class="sum-loc"></dd>
+          </div>
+          <div>
+            <dt>Workout schedule</dt>
+            <dd class="sum-sched"></dd>
+          </div>
+        </dl>
+        <div class="wiz-nav">
+          <a class="btn alt" href="#s2">Change answers</a><a class="btn" href="dashboard.html">Go to Dashboard</a>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
