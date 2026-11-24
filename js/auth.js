@@ -231,6 +231,15 @@
 
   function bindAuthForm() {
     const form = document.querySelector(".auth-card");
+    const passwordInput = form.querySelector("#auth-password");
+    const toggle = form.querySelector(".password-toggle");
+    toggle.hidden = false;
+    toggle.addEventListener("click", () => {
+      const visible = passwordInput.type === "password";
+      passwordInput.type = visible ? "text" : "password";
+      toggle.textContent = visible ? "Hide" : "Show";
+      toggle.setAttribute("aria-label", visible ? "Hide password" : "Show password");
+    });
     const button = form.querySelector("button[type=submit]");
     const signup = filename === "signup.html";
     button.disabled = false;

@@ -23,12 +23,19 @@
           autocomplete="email"
           placeholder="you@example.com"
           required=""
-          type="email" /></label><label>Password<input
-          name="password"
-          autocomplete="current-password"
-          placeholder="Your password"
-          required=""
-          type="password" /></label>
+          type="email" /></label>
+      <div class="auth-password">
+        <label for="auth-password">Password</label>
+        <div class="auth-password-field">
+          <input id="auth-password"
+            name="password"
+            autocomplete="current-password"
+            placeholder="Your password"
+            required=""
+            type="password" />
+          <button class="password-toggle" type="button" aria-controls="auth-password" aria-label="Show password" hidden>Show</button>
+        </div>
+      </div>
       <button class="btn" type="submit" disabled>Log in</button>
       <p class="alt">New to Muscle Hub? <a href="signup.html">Sign up</a></p>
     </form>

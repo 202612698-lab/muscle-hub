@@ -1158,3 +1158,38 @@ h3 {
 :where(main, footer, .wiz) :is(strong, b) {
   font-weight: 500;
 }
+
+
+.auth-password {
+  display: grid;
+  gap: 6px;
+}
+.auth-password-field {
+  position: relative;
+}
+.auth-password-field input {
+  width: 100%;
+}
+.auth-password-field:has(.password-toggle:not([hidden])) input {
+  padding-inline-end: 4.5rem;
+}
+.auth-password-field input::-ms-reveal {
+  display: none;
+}
+.password-toggle {
+  position: absolute;
+  inset: 4px 5px 4px auto;
+  min-width: 3.5rem;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font: 500 13px Inter, system-ui, sans-serif;
+  cursor: pointer;
+}
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  border-color: var(--line);
+  color: var(--text);
+}
