@@ -237,7 +237,6 @@
     toggle.addEventListener("click", () => {
       const visible = passwordInput.type === "password";
       passwordInput.type = visible ? "text" : "password";
-      toggle.textContent = visible ? "Hide" : "Show";
       toggle.setAttribute("aria-label", visible ? "Hide password" : "Show password");
     });
     const button = form.querySelector("button[type=submit]");

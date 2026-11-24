@@ -1171,7 +1171,7 @@ h3 {
   width: 100%;
 }
 .auth-password-field:has(.password-toggle:not([hidden])) input {
-  padding-inline-end: 4.5rem;
+  padding-inline-end: 3.25rem;
 }
 .auth-password-field input::-ms-reveal {
   display: none;
@@ -1179,8 +1179,9 @@ h3 {
 .password-toggle {
   position: absolute;
   inset: 4px 5px 4px auto;
-  min-width: 3.5rem;
-  padding: 0 8px;
+  width: 42px;
+  padding: 0;
+  place-items: center;
   border: 1px solid transparent;
   border-radius: 8px;
   background: transparent;
@@ -1192,4 +1193,24 @@ h3 {
 .password-toggle:focus-visible {
   border-color: var(--line);
   color: var(--text);
+}
+
+.password-toggle:not([hidden]) {
+  display: grid;
+}
+.password-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.password-eye-off,
+.auth-password-field input[type="text"] + .password-toggle .password-eye {
+  display: none;
+}
+.auth-password-field input[type="text"] + .password-toggle .password-eye-off {
+  display: block;
 }
