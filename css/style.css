@@ -1189,7 +1189,6 @@ h3 {
   font: 500 13px Inter, system-ui, sans-serif;
   cursor: pointer;
 }
-.password-toggle:hover,
 .password-toggle:focus-visible {
   border-color: var(--line);
   color: var(--text);
